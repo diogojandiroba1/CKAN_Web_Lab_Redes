@@ -1,0 +1,85 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 05_Projeto_Detalhado_Orcamento.tex
+%% Projeto Detalhado, Especificação de Materiais e Orçamento via PNCP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Projeto Detalhado e Orçamento}
+\label{cap:projeto_detalhado}
+
+\section{Metodologia de Aquisição e Compras Públicas}
+
+O planejamento de contratação da infraestrutura para a Universidade Federal de Sergipe orienta-se pela Lei nº 14.133/2021 (Lei de Licitações e Contratos Administrativos). 
+
+O levantamento orçamentário utiliza como fonte prioritária as Atas de Registro de Preços (ARP) e os Termos de Referência (TR) vigentes na Esfera Federal, disponibilizados no Portal Nacional de Contratações Públicas (PNCP). Essa abordagem garante a adoção de especificações padronizadas pelo governo federal e facilita a cotação comparativa de preços públicos para ativos e passivos de rede.
+
+\section{Lista Técnica de Materiais (Bill of Materials)}
+
+A especificação de itens foi organizada em quatro categorias:
+\begin{enumerate}
+    \item \textbf{Ativos de Rede}: Roteadores corporativos de borda e internos, \textit{firewall} físico perimetral, switches Gigabit Ethernet gerenciáveis e pontos de acesso sem fio. O roteador de borda do provedor acadêmico (\texttt{ISP-UFS}) constitui ativo já existente do patrimônio do Núcleo de Tecnologia da Informação (NTI/UFS), não integrando as despesas de aquisição deste projeto;
+    \item \textbf{Servidores e Armazenamento}: Servidores físicos padrão rack com processadores corporativos para hospedagem web, banco de dados geográfico e serviços de rede DHCP dedicados, além de unidade de armazenamento para cópias de segurança;
+    \item \textbf{Passivos e Cabeamento Estruturado}: Gabinetes de 19 polegadas, painéis de manobra Cat6, bobinas de cabo U/UTP de 305 metros, conectores modulares, cabos de manobra, distribuidores ópticos e sistemas de alimentação ininterrupta;
+    \item \textbf{Estações de Trabalho e Periféricos}: Computadores para execução de rotinas de modelagem hidrológica e processamento de imagens geoespaciais.
+\end{enumerate}
+
+A Tabela~\ref{tab:orcamento_ativos} apresenta a especificação técnica dos equipamentos ativos e servidores, enquanto a Tabela~\ref{tab:orcamento_passivos} detalha os itens passivos de cabeamento estruturado e as estações de trabalho.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Especificação técnica e registro de preços de ativos de rede e servidores.}
+\label{tab:orcamento_ativos}
+\begin{tabularx}{\textwidth}{|l|Y|c|l|c|c|l|}
+\hline
+\rowcolor{tableheaderbeige}
+\textbf{Item} & \textbf{Descrição e Modelo de Referência} & \textbf{Qtd} & \textbf{Id. ARP / PNCP} & \textbf{Unit. (R\$)} & \textbf{Total (R\$)} & \textbf{Link / Fonte TR} \\ \hline
+\multicolumn{7}{|l|}{\textbf{1. Ativos de Rede e Comunicação}} \\ \hline
+1.1 & Roteador de Borda Cisco ISR 4321 (2xGbE WAN, VPN) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+1.2 & Firewall Físico Cisco ASA 5506-X (8xGbE, Stateful MPF) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+1.3 & Roteador Interno Cisco 2911 (3xGbE, Roteamento Inter-VLAN) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+1.4 & Switch Cisco Catalyst 2960-24TT (24P GbE, VLAN 802.1Q) & 4 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+1.5 & Switch PoE+ TP-Link Omada SG2210P (8P GbE PoE+ 61W) & 2 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+1.6 & Access Point Wi-Fi 6 TP-Link Omada EAP610 Gigabit PoE & 3 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+\multicolumn{7}{|l|}{\textbf{2. Servidores e Armazenamento Central}} \\ \hline
+2.1 & Servidor Web Dell PowerEdge R440 / R450 1U (Xeon, 64GB, SSD) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+2.2 & Servidor Dados Dell PowerEdge R540 / R550 2U (Xeon, 128GB, SAS) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+2.3 & Servidor DHCP Dedicado Dell PowerEdge R250 / R350 1U (Xeon, 32GB) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+2.4 & Storage NAS Backup Externo 4 Baias 16TB RAID 5 & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Especificação técnica e registro de preços de passivos, cabeamento e estações.}
+\label{tab:orcamento_passivos}
+\begin{tabularx}{\textwidth}{|l|Y|c|l|c|c|l|}
+\hline
+\rowcolor{tableheaderbeige}
+\textbf{Item} & \textbf{Descrição e Modelo de Referência} & \textbf{Qtd} & \textbf{Id. ARP / PNCP} & \textbf{Unit. (R\$)} & \textbf{Total (R\$)} & \textbf{Link / Fonte TR} \\ \hline
+\multicolumn{7}{|l|}{\textbf{3. Passivos e Cabeamento Estruturado}} \\ \hline
+3.1 & Rack Fechado 19" 42U x 1000mm com Porta de Vidro Temperado & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.2 & Mini-Rack 19" 24U x 670mm de Piso ou Parede (CT-09) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.3 & Patch Panel Cat6 24 Portas Furukawa SohoPlus & 5 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.4 & Caixa de Cabo U/UTP Cat6 23 AWG 305m Furukawa GigaLan LSZH & 8 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.5 & Módulo Conector Keystone RJ-45 Cat6 Fêmea Furukawa & 120 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.6 & Patch Cord Cat6 1,5m Conectorizado LSZH Azul Furukawa & 100 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.7 & Patch Cord Cat6 2,5m Conectorizado LSZH Azul Furukawa & 30 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.8 & Organizador de Cabos Horizontal 1U Fechado & 6 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.9 & Régua PDU 12 Tomadas 20A NBR 14136 com Disjuntor & 3 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.10 & Distribuidor Interno Óptico (DIO) 1U 24 Fibras com Conectores LC & 2 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.11 & Cabo Óptico Monomodo 9/125$\mu$m 6FO Geleado Subterrâneo (m) & 300 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.12 & Nobreak Senoidal Online Dupla Conversão 3000VA 2U Rack & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+3.13 & Nobreak Senoidal 1500VA para Rack Secundário (CT-09) & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+\multicolumn{7}{|l|}{\textbf{4. Estações de Trabalho e Periféricos}} \\ \hline
+4.1 & Workstation Modelagem (Core i7, 32GB RAM, 1TB NVMe, RTX 4060) & 15 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+4.2 & Monitor Profissional 27" IPS QHD (2560x1440) com Ajuste de Altura & 15 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+4.3 & Impressora Multifuncional Laser Colorida A3/A4 & 1 & A preencher & -- & -- & \url{https://pncp.gov.br} \\ \hline
+\end{tabularx}
+\end{table}
+
+\section{Considerações sobre a Formação do Orçamento}
+
+Os valores unitários e totais serão inseridos após a extração direta das Atas de Registro de Preços homologadas no PNCP ou nos Termos de Referência de compras públicas vigentes. 
+
+A especificação priorizou componentes de ampla circulação no mercado governamental de TI (marcas como Cisco, Dell, Furukawa e TP-Link), reduzindo a probabilidade de impugnações em processos licitatórios e assegurando fornecimento regular com assistência técnica no território nacional.

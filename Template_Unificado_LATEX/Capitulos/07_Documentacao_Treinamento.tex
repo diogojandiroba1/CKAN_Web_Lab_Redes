@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 07_Documentacao_Treinamento.tex
+%% Guias para os Usuários: Operação e Administração do Sistema
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Guias para os Usuários}
+\label{cap:guias_usuarios}
+
+\section{Objetivo dos Guias}
+
+Este capítulo apresenta as instruções de operação da plataforma NextGIS Web e dos serviços de rede. O conteúdo é organizado para atender aos administradores técnicos da infraestrutura e aos pesquisadores do grupo de Modelagem Hidrológica.
+
+\section{Guia do Administrador: Implantação e Manutenção}
+
+\subsection{Inicialização dos Serviços}
+
+A implantação do ambiente nos servidores locais ou na instância de treinamento em nuvem requer a instalação prévia do Docker e do Docker Compose. A inicialização e verificação dos serviços executam os seguintes comandos:
+
+\begin{enumerate}
+    \item Acessar o diretório de implantação da aplicação:
+\begin{lstlisting}[language=bash]
+cd deploy/
+\end{lstlisting}
+    \item Inicializar os contêineres em segundo plano:
+\begin{lstlisting}[language=bash]
+docker compose up -d
+\end{lstlisting}
+    \item Verificar o estado de execução dos serviços:
+\begin{lstlisting}[language=bash]
+docker compose ps
+\end{lstlisting}
+    Os contêineres \texttt{ngw\_postgis}, \texttt{ngw\_redis}, \texttt{ngw\_core} e \texttt{ngw\_proxy} devem apresentar o estado \texttt{Up}.
+\end{enumerate}
+
+\section{Guia do Pesquisador: Uso da Plataforma Web GIS}
+
+O acesso dos pesquisadores e estudantes à plataforma ocorre diretamente pelo navegador web de forma simplificada, sem necessidade de interação com o terminal de comandos.
+
+\subsection{Acesso e Login}
+\begin{enumerate}
+    \item Abrir o navegador e acessar o endereço institucional do laboratório (\url{http://nextgis.labhidro.ufs.br} ou o endereço IP público fornecido pelo administrador durante os treinamentos);
+    \item Clicar no botão \textbf{Entrar} no canto superior direito;
+    \item Inserir o nome de usuário e a senha fornecidos pela equipe de suporte do laboratório.
+\end{enumerate}
+
+\subsection{Importação de Camadas Vetoriais e Matriciais}
+\begin{enumerate}
+    \item No painel lateral, selecionar a pasta da bacia hidrográfica correspondente ao estudo;
+    \item Clicar em \textbf{Criar Recurso} e selecionar o tipo de dado: \textbf{Camada Vetorial} para polígonos ou linhas de drenagem, ou \textbf{Camada Raster} para Modelos Digitais de Elevação;
+    \item Fazer o upload do arquivo compactado em formato \texttt{.zip} contendo os arquivos do Shapefile (\texttt{.shp}, \texttt{.shx}, \texttt{.dbf} e \texttt{.prj}) ou arquivo \texttt{.geojson};
+    \item Confirmar o Sistema de Referência Espacial detectado (SIRGAS 2000 / UTM 24S - EPSG:31984) e salvar o recurso.
+\end{enumerate}
+
+\subsection{Criação de Mapas Interativos}
+\begin{enumerate}
+    \item No menu de recursos, clicar em \textbf{Criar Recurso} $\rightarrow$ \textbf{Mapa Web};
+    \item Marcar as camadas vetoriais de hidrografia e saneamento a serem exibidas sobre o mapa base (OpenStreetMap ou relevo);
+    \item Definir a escala inicial de visualização e salvar o mapa;
+    \item O link gerado pode ser compartilhado com os demais integrantes da equipe para consulta rápida.
+\end{enumerate}
+
+\subsection{Conexão com o QGIS Desktop}
+Para análises hidrológicas avançadas em estações de trabalho locais, os dados podem ser consumidos diretamente no software QGIS:
+\begin{enumerate}
+    \item No NextGIS Web, abrir as propriedades da camada desejada e copiar o link do serviço \textbf{WMS} (\textit{Web Map Service});
+    \item No QGIS, clicar no menu \textbf{Camada} $\rightarrow$ \textbf{Adicionar Camada} $\rightarrow$ \textbf{Adicionar Camada WMS/WMTS};
+    \item Criar uma nova conexão colando o link copiado;
+    \item Clicar em \textbf{Conectar} e adicionar as feições ao projeto local.
+\end{enumerate}

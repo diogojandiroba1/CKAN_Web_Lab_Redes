@@ -1,0 +1,39 @@
+# Segredos e Chaves Privadas
+*.pem
+*.key
+*.id_rsa
+NextGIS_Web_chave.pem
+
+# Sistema Operacional e Editores
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# Materiais de Aula, Enunciados e PDFs de Referência do Professor
+Formularios_atividades/
+calendario.PNG
+Projeto-de-Redes-da-Turma-2026-2.pdf
+Projeto-2026-2-EDITAL-SELECAO-PUBLICA-011-2025 (1).pdf
+Como documentar a infraestrutura de rede da empresa — oHub Base TI.pdf
+
+# Diretórios legados migrados
+deploy/
+
+# Arquivos Auxiliares e Temporários do LaTeX
+Template_Unificado_LATEX/*.aux
+Template_Unificado_LATEX/*.log
+Template_Unificado_LATEX/*.out
+Template_Unificado_LATEX/*.toc
+Template_Unificado_LATEX/*.lof
+Template_Unificado_LATEX/*.lot
+Template_Unificado_LATEX/*.synctex.gz
+Template_Unificado_LATEX/Capitulos/*.aux
+
+# Backups e Logs
+*.bak
+*.tmp
+*.log

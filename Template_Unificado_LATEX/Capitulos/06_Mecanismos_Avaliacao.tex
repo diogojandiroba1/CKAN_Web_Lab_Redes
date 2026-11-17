@@ -1,0 +1,95 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 06_Mecanismos_Avaliacao.tex
+%% Homologação de Rede, Validação no Packet Tracer e Testes de Terminal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Homologação de Rede}
+\label{cap:mecanismos_avaliacao}
+
+\section{Metodologia de Homologação}
+
+A homologação da infraestrutura de rede fundamenta-se em testes empíricos de conectividade na camada de enlace, roteamento inter-VLAN, concessão de parâmetros de rede, inspeção perimetral de pacotes com estado e aplicação de listas de controle de acesso. O ambiente operacional foi emulado no simulador Cisco Packet Tracer e validado por meio de comandos executados no prompt de comando (CLI) das estações e consoles dos ativos de rede.
+
+Os ensaios comprovam a interoperabilidade entre os blocos Externo, CT12 e CT09, ratificando as políticas de isolamento de serviços críticos e a disponibilidade de saída externa.
+
+\section{Testes de Conectividade e Roteamento}
+
+\subsection{Teste 01: Conectividade Intra-VLAN e Alcance do Gateway}
+\textbf{Objetivo}: Verificar a comunicação local na camada de enlace e a resposta do gateway na subinterface do roteador interno (\texttt{router\_interno}).
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa local \texttt{WS-CT12-01} (\texttt{192.168.30.50});
+    \item \textbf{Destino}: Gateway padrão da VLAN 30 (\texttt{192.168.30.1});
+    \item \textbf{Comando}: \texttt{ping 192.168.30.1};
+    \item \textbf{Resultado}: 0\% de perda de pacotes, tempo de resposta inferior a 1 ms e $\text{TTL} = 255$, atestando a integridade do enlace de acesso no switch \texttt{SW-CT12} e da subinterface \texttt{g0/0.30}.
+\end{itemize}
+
+\subsection{Teste 02: Roteamento Inter-VLAN e Acesso aos Servidores}
+\textbf{Objetivo}: Validar o encaminhamento de pacotes entre a rede de pesquisa (VLAN 30) e a rede de servidores (VLAN 20).
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa \texttt{WS-CT12-01} (\texttt{192.168.30.50});
+    \item \textbf{Destino}: Servidor da aplicação NextGIS Web \texttt{SRV-NEXTGIS} (\texttt{192.168.20.10});
+    \item \textbf{Comando}: \texttt{ping 192.168.20.10};
+    \item \textbf{Resultado}: Resposta com sucesso ($\text{TTL} = 127$), confirmando a comutação de enlace no tronco 802.1Q e o roteamento entre as subinterfaces \texttt{g0/0.30} e \texttt{g0/0.20} no Cisco 2911.
+\end{itemize}
+
+\subsection{Teste 03: Rastreamento de Saltos e Travessia de Borda}
+\textbf{Objetivo}: Mapear o percurso dos pacotes originados nas estações internas até a saída externa, comprovando a transposição pelo \textit{firewall} perimetral e pelo roteador de borda.
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa \texttt{WS-CT12-01} (\texttt{192.168.30.50});
+    \item \textbf{Destino}: Destino externo de teste (\texttt{8.8.8.8});
+    \item \textbf{Comando}: \texttt{tracert 8.8.8.8};
+    \item \textbf{Resultado}: Transposição encadeada e ordenada pelos quatro nós da infraestrutura:
+    \begin{enumerate}
+        \item Salto 1: Gateway interno \texttt{router\_interno} (\texttt{192.168.30.1});
+        \item Salto 2: Interface \textit{inside} do \textit{firewall} Cisco ASA 5506-X (\texttt{10.0.1.1});
+        \item Salto 3: Interface interna do roteador de borda Cisco ISR 4321 (\texttt{10.0.0.1});
+        \item Salto 4: Gateway WAN do provedor institucional \texttt{ISP-UFS} (\texttt{200.17.0.1}).
+    \end{enumerate}
+\end{itemize}
+
+\section{Verificação de Políticas de Acesso e Segurança}
+
+\subsection{Teste 04: Acesso aos Serviços Cartográficos Web (HTTP e HTTPS)}
+\textbf{Objetivo}: Comprovar a liberação de conexões nas portas 80 e 443 TCP direcionadas à interface web do NextGIS Web.
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa \texttt{WS-CT12-01} ou dispositivo sem fio associado ao ponto de acesso;
+    \item \textbf{Destino}: Servidor \texttt{SRV-NEXTGIS} (\texttt{192.168.20.10});
+    \item \textbf{Comandos}: Conexão via navegador web e sondagem nas portas 80 e 443 TCP;
+    \item \textbf{Resultado}: Sessão estabelecida com êxito, confirmando o carregamento dos mapas interativos e a conformidade da regra de liberação HTTP/HTTPS na ACL \texttt{ACL\_PESQUISA\_IN}.
+\end{itemize}
+
+\subsection{Teste 05: Bloqueio do Banco de Dados Relacional e Espacial (TCP 5432)}
+\textbf{Objetivo}: Garantir que as estações de pesquisa e dispositivos Wi-Fi não acessem diretamente a porta nativa do PostgreSQL.
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa \texttt{WS-CT12-01} (\texttt{192.168.30.50});
+    \item \textbf{Destino}: Servidor PostGIS \texttt{SRV-POSTGIS} (\texttt{192.168.20.20});
+    \item \textbf{Comando}: Tentativa de conexão TCP na porta 5432;
+    \item \textbf{Resultado}: Conexão rejeitada e descartada pelo roteador de distribuição por força da regra explícita \texttt{deny tcp host 192.168.20.20 eq 5432 log}.
+\end{itemize}
+
+\subsection{Teste 06: Isolamento da Sub-rede de Gerência de Ativos (VLAN 10)}
+\textbf{Objetivo}: Impedir que estações comuns alcancem portas e endereços de gerenciamento de switches e roteadores.
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa \texttt{WS-CT12-01} (\texttt{192.168.30.50});
+    \item \textbf{Destino}: Interface de gerência do switch \texttt{SW-CT12} (\texttt{192.168.10.2});
+    \item \textbf{Comando}: \texttt{ping 192.168.10.2};
+    \item \textbf{Resultado}: Resposta imediata de descarte \texttt{Reply from 192.168.30.1: Destination host unreachable} (100\% de perda), comprovando a contenção imposta pelo roteador antes do encaminhamento à VLAN 10.
+\end{itemize}
+
+\subsection{Teste 07: Conectividade WAN e Saída para Internet (NAT/PAT e MPF)}
+\textbf{Objetivo}: Validar a saída perimetral, inspeção de pacotes no \textit{firewall} ASA e tradução de endereços por sobrecarga no roteador de borda.
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa \texttt{WS-CT12-01} (\texttt{192.168.30.50});
+    \item \textbf{Destino}: Gateway WAN do Provedor UFS (\texttt{200.17.0.1}) e Endereço DNS público simulado (\texttt{8.8.8.8});
+    \item \textbf{Comandos}: \texttt{ping 200.17.0.1} e \texttt{ping 8.8.8.8};
+    \item \textbf{Resultado}: Pacotes transmitidos e respondidos com sucesso ($\text{TTL} = 252$), atestando a inspeção de estado no Cisco ASA 5506-X, a tradução NAT com endereço público de saída no Cisco ISR 4321 e o alcance ao nó \texttt{ISP-UFS}.
+\end{itemize}
+
+\subsection{Teste 08: Concessão Dinâmica de Endereços via DHCP Relay}
+\textbf{Objetivo}: Validar o fornecimento autônomo de parâmetros de rede pelo servidor dedicado \texttt{SRV-DHCP} para estações do Prédio CT-09.
+\begin{itemize}
+    \item \textbf{Origem}: Estação de Pesquisa remota \texttt{WS-CT09-01} (Prédio CT-09);
+    \item \textbf{Procedimento}: Habilitação da configuração de rede em modo DHCP na interface de rede;
+    \item \textbf{Fluxo de Rede}: As transmissões de difusão de descoberta (\textit{DHCP Discover}) alcançam o switch \texttt{SW-CT09}, transitam pelo tronco de fibra óptica até o \texttt{SW-CT12} e chegam à subinterface \texttt{g0/0.30} do Cisco 2911. O roteador converte a difusão em unidifusão direcionada ao IP \texttt{192.168.20.30};
+    \item \textbf{Resultado}: Sucesso na concessão (\textit{DHCP request successful}), atribuindo o endereço IP dentro da faixa \texttt{192.168.30.0/24}, máscara \texttt{255.255.255.0}, gateway padrão \texttt{192.168.30.1} e DNS \texttt{8.8.8.8}.
+\end{itemize}
