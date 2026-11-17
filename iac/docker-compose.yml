@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   # Servidor 2: SGBD Relacional e Espacial
   postgis_db:
-    image: postgis/postgis:16-3.4
+    image: postgis/postgis:15-3.3
     container_name: ngw_postgis
     restart: always
     environment:
@@ -25,28 +23,27 @@ services:
     networks:
       - internal_gis_net
 
-  # Servidor 1: Nucleo da Aplicacao NextGIS Web
+  # Servidor 1: Nucleo da Aplicacao NextGIS Web Community Edition
   nextgisweb:
-    image: nextgis/nextgisweb:latest
+    image: nextgis/nextgisweb-ce:latest
     container_name: ngw_core
+    command: server
     restart: always
     depends_on:
       - postgis_db
       - redis_cache
     environment:
-      NGW_DB_HOST: postgis_db
-      NGW_DB_PORT: 5432
-      NGW_DB_NAME: nextgisweb_db
-      NGW_DB_USER: nextgis_admin
-      NGW_DB_PASSWORD: SecretPostgisPassword2026!
-      NGW_REDIS_URL: redis://redis_cache:6379/0
+      NEXTGISWEB__CORE__LOCALE__DEFAULT: "pt_BR"
+      NEXTGISWEB__DATABASE__URL: "postgresql://nextgis_admin:SecretPostgisPassword2026!@postgis_db:5432/nextgisweb_db"
+      NEXTGISWEB__REDIS__URL: "redis://redis_cache:6379/0"
     volumes:
-      - nextgis_filestore:/opt/nextgisweb/filestore
+      - nextgis_data:/opt/crater/data
+      - nextgis_backup:/opt/crater/backup
     networks:
       - internal_gis_net
       - dmz_net
 
-  # Proxy Reverso e Terminacao HTTP
+  # Proxy Reverso e Terminacao HTTP (Porta 80 e 443)
   nginx_proxy:
     image: nginx:alpine
     container_name: ngw_proxy
@@ -64,7 +61,9 @@ services:
 volumes:
   postgis_data:
     driver: local
-  nextgis_filestore:
+  nextgis_data:
+    driver: local
+  nextgis_backup:
     driver: local
 
 networks:
