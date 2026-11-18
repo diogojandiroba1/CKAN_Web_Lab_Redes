@@ -113,60 +113,61 @@ O Rack Principal de 42U localizado na Sala 101 do CT-09 concentra todos os equip
 
 ![Diagrama Visual de Ocupação do Rack 42U](img/layout_rack_telecomunicacoes.png)
 *Link para o arquivo anexado em alta resolução: [layout_rack_telecomunicacoes.png](img/layout_rack_telecomunicacoes.png)*
+*Consulte o documento dedicado com a análise detalhada e o diagrama do Mini-Rack 24U (CT-12): [diagrama-ocupacao-rack.md](diagrama-ocupacao-rack.md)*
 
-### Diagrama de Elevação Vertical em Escala U (Padrão Executivo)
+### Diagrama de Elevação Vertical em Escala U (Markdown Textual)
 
 ```text
 =============================================================================
                       SISTEMA DE EXAUSTÃO (TETO DO RACK)
 =============================================================================
-[U42] [=================== DIO ÓPTICO FURUKAWA 1U (CAMPUS) ===================]
-[U41] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U40] [============== ROTEADOR DE BORDA CISCO ISR 4321 ======================]
-[U39] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U38] [================ FIREWALL CISCO ASA 5506-X 1U ========================]
-[U37] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U36] [============== ROTEADOR INTERNO CISCO 2911 ===========================]
-[U35] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U34] [============= SWITCH CENTRAL CISCO CATALYST 2960 =====================]
-[U33] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U32] [================ PATCH PANEL CAT6 24P (PAINEL 01) ====================]
-[U31] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U30] [================ PATCH PANEL CAT6 24P (PAINEL 02) ====================]
-[U29] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U28] [================ PATCH PANEL CAT6 24P (PAINEL 03) ====================]
-[U27] [============== SWITCH POE+ TP-LINK OMADA SG2210P =====================]
-[U26] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U25] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U24] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U23] [======== SERVIDOR DHCP DEDICADO DELL POWEREDGE R250/R350 1U ==========]
-[U22] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U21] [                                                                      ] (2U)
-[U20] [======== SERVIDOR WEB NEXTGIS DELL POWEREDGE R440 / R450 1U ==========]
-[U19] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U18] [                                                                      ] (2U)
-[U17] [======== SERVIDOR BANCO POSTGIS DELL POWEREDGE R540 / R550 2U ========]
-[U16] [                                                                      ]
-[U15] [----------------- GUIA DE CABO HORIZONTAL 1U -------------------------]
-[U14] [======== STORAGE NAS BACKUP EXTERNO 4 BAIAS RAID 5 ===================] (2U)
-[U13] [                                                                      ]
-[U12] [====================== BANDEJA FIXA 1U ===============================]
-[U11] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U10] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U09] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U08] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U07] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U06] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U05] [====================== ESPAÇO VAGO / RESERVA ==========================]
-[U04] [                                                                      ] (4U)
-[U03] [======== NOBREAK SENOIDAL ONLINE DUPLA CONVERSÃO 3000VA 2U ===========]
-[U02] [======== BANCO DE BATERIAS EXTERNO 2U ================================]
-[U01] [                                                                      ]
+[U42] [======================= PAINEL DE VENTILAÇÃO =======================]
+[U41] [=================== CALHA DE TOMADAS (PDU) 12T =====================]
+[U40] [=================== ROTEADOR / FIREWALL BORDA (ER7206) =============]
+[U39] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U38] [=================== FIREWALL PERIMETRAL FÍSICO (ASA 5506-X) ========]
+[U37] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U36] [=================== ROTEADOR INTERNO INTER-VLAN (CISCO 2911) =======]
+[U35] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U34] [=================== SWITCH CORE / AGREGAÇÃO (SG3428 24P) ===========]
+[U33] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U32] [================== PATCH PANEL 01 (DATACENTER NEXTGIS) =============]
+[U31] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U30] [================== SWITCH DE ACESSO 01 POE+ (SG2210P) ==============]
+[U29] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U28] [================ PATCH PANEL 02 (ESTRUTURADO CT-09 BLOCO A) ========]
+[U27] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U26] [================== SWITCH DE ACESSO 02 (SG3428 DADOS) ==============]
+[U25] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U24] [================ PATCH PANEL 03 (ESTRUTURADO CT-09 BLOCO B) ========]
+[U23] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U22] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U21] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U20] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U19] [================== DIO (DISTRIBUIDOR INTERNO ÓPTICO 24F) ===========]
+[U18] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U17] [=================== BANDEJA FIXA DE TI (1U) ========================]
+[U16] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U15] [======== SERVIDOR DHCP DEDICADO DELL POWEREDGE R250 (1U) ===========]
+[U14] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U13] [======== SERVIDOR WEB NEXTGIS DELL POWEREDGE R440 (1U) =============]
+[U12] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U11] [  NAS / STORAGE BACKUP 4 BAIAS 16TB RAID 5 (QNAP)                   ] (2U)
+[U10] [____________________________________________________________________]
+[U09] [  SERVIDOR BANCO POSTGIS DELL POWEREDGE R540 2U (128GB/SAS)         ] (2U)
+[U08] [____________________________________________________________________]
+[U07] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U06] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U05] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U04] [  BANCO DE BATERIAS EXTERNO (EXPANSÃO DE AUTONOMIA 2U)              ] (2U)
+[U03] [____________________________________________________________________]
+[U02] [  NO-BREAK (UPS) SENOIDAL ONLINE DUPLA CONVERSÃO 3000VA (2U)        ] (2U)
+[U01] [____________________________________________________________________]
 =============================================================================
-                          BASE DO RACK / RODÍZIOS
+                           BASE DO RACK / RODÍZIOS
 =============================================================================
-::: RÉGUA DE TOMADAS PDU 12 TOMADAS 20A INSTALADA NA LATERAL DO RACK :::
-::: ORGANIZADORES VERTICAIS DE CABOS EM AMBAS AS LATERAIS :::
+::: ORGANIZADORES LATERAIS :::
+(Passam verticalmente da base ao topo nas laterais esquerda e direita)
 ```
 
 > **Nota sobre o Roteador Provedor (`ISP-UFS`)**: Conforme demarcado no projeto lógico, o roteador `ISP-UFS` situa-se no datacenter institucional do Núcleo de Tecnologia da Informação (NTI/UFS), não ocupando espaço físico no rack local do laboratório.

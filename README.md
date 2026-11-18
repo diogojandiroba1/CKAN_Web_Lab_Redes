@@ -107,7 +107,8 @@ O repositório está organizado segundo as diretrizes de entrega da disciplina:
 ├── README.md               # Esta página de apresentação executiva
 ├── docs/                   # Documentação técnica em Markdown com imagens
 │   ├── projeto-logico.md   # Arquitetura lógica 3 camadas, VLANs e ACLs
-│   ├── projeto-fisico.md   # Planta física, cabeamento e layout do Rack 42U
+│   ├── projeto-fisico.md   # Planta física, cabeamento e infraestrutura
+│   ├── diagrama-ocupacao-rack.md # Layout e elevação vertical em escala U (42U e 24U)
 │   ├── bom-orcamento.md    # Lista de materiais (BOM) e atas do PNCP
 │   ├── mecanismos-avaliacao.md # Homologação e testes empíricos
 │   ├── adr/                # Architectural Decision Records (ADRs)
