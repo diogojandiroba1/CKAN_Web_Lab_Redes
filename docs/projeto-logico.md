@@ -91,12 +91,23 @@ interface GigabitEthernet0/0.30
 
 ## 4. Arquitetura do Serviço de Software Livre
 
-A plataforma geoespacial foi concebida sob o ecossistema de software de código aberto:
+A plataforma geoespacial NextGIS Web estrutura-se sob o ecossistema de microsserviços em contêineres Docker:
 
-![Arquitetura da Solução NextGIS Web](img/arquitetura_conteineres.png)
-*Link para o arquivo anexado em alta resolução: [arquitetura_conteineres.png](img/arquitetura_conteineres.png)*
+```mermaid
+flowchart TD
+    Client["Navegador / Cliente GIS (QGIS, Web)"]
+    Nginx["Nginx (Proxy Reverso & Cache) - Portas 80/443"]
+    NextGIS["NextGIS Web Core (Serviço de Mapas & REST API)"]
+    Redis[("Redis 7.2 (Fila de Tarefas Assíncronas)")]
+    PostGIS[("PostgreSQL 16 + PostGIS 3.4 (Banco Espacial)")]
+
+    Client -->|HTTP / HTTPS| Nginx
+    Nginx --> NextGIS
+    NextGIS --> Redis
+    NextGIS --> PostGIS
+```
 
 1. **Proxy Reverso e Cache Web**: Nginx atuando como ponto único de entrada HTTP/HTTPS (portas 80 e 443), aplicando compactação gzip, cache de recursos estáticos e proteção de cabeçalhos;
 2. **Servidor de Mapas (*Core*)**: NextGIS Web processando chamadas da API REST e requisições OGC (WMS/WFS/TMS);
-3. **Fila de Tarefas Assíncronas**: Redis 7.2 gerenciando filas de importação pesada de camadas cartográficas e geração de pirâmides de mosaicos;
+3. **Fila de Tarefas Assíncronas**: Redis 7.2 gerenciando filas de importação de camadas cartográficas e geração de pirâmides de mosaicos;
 4. **Sistema Gerenciador de Banco de Dados**: PostgreSQL 16 com extensão espacial PostGIS 3.4, garantindo armazenamento transacional com suporte a tipos geométricos, operações topológicas e indexação R-Tree (GIST).

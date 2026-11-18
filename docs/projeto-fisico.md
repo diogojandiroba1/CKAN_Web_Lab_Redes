@@ -58,10 +58,11 @@ A instalação física abrange os prédios **CT-09** e **CT-12**, estruturando-s
 
 ## 3. Planta Baixa de Infraestrutura e Lançamento de Cabos
 
-O trajeto dos condutos, localização dos gabinetes e distribuição dos pontos de rede nos dois laboratórios é representado no diagrama executivo unificado:
+O trajeto dos condutos, localização dos gabinetes e distribuição dos pontos de rede nos laboratórios baseiam-se nas plantas baixas arquitetônicas cotadas e na simulação no TP-Link Omada:
 
-![Planta Baixa e Disposição de Pontos de Rede](img/planta_fisica_laboratorios.png)
-*Link para o arquivo anexado em alta resolução: [planta_fisica_laboratorios.png](img/planta_fisica_laboratorios.png)*
+* [Planta Baixa Cotada - Laboratório CT-09 (Sala 101)](img/planta_CT09.png)
+* [Planta Baixa Cotada - Laboratório CT-12 (Sala 201)](img/planta_CT12.png)
+* [Layout Físico e Mapa de Cobertura Omada](img/omada_planta_heatmap.jpg)
 
 ### Quantitativo de Pontos por Sala
 
