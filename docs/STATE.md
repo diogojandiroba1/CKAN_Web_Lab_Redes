@@ -19,12 +19,16 @@
   - Planilha [`NextGisWebFinal.xlsx`](file:///c:/Users/Diogo/Desktop/UFS_2026.2/Redes/NextGisWebFinal.xlsx) formatada com as colunas em destaque em laranja exigidas pela professora:
     - *Tipo Dispositivo*
     - *Ata Vigente / ID de Contratação PNCP*
-  - Consolidação de 4 categorias:
-    1. Ativos de Rede e Comunicação (R$ 18.839,60);
-    2. Servidores Corporativos e Armazenamento Central NextGIS (R$ 89.700,00);
-    3. Gabinetes, Passivos e Cabeamento Estruturado (R$ 25.554,85);
-    4. Estações de Trabalho e Periféricos de Pesquisa (R$ 140.135,00);
-  - **Valor Total Global Estimado**: **R$ 274.229,45**, fundamentado na Lei nº 14.133/2021 e mapeado a partir de 8 Atas de Registro de Preços e Pregões Federais vigentes (AGU, DNIT, Polícia Federal, Embrapa, UFG, Exército/ESA, Marinha do Brasil e CREFONO6).
+  - Todos os 24 itens vinculados a 8 Atas de Registro de Preços federais vigentes no PNCP com seus respectivos identificadores formais e hiperlinks diretos homologados:
+    1. **AGU** (`26994558000123-1-000147/2026-000001`): Switches, Gateway VPN, Cabos ópticos, Patch cords, DIO e Multifuncional;
+    2. **DNIT** (`04892707000100-1-000453/2025-000002`): Cabos Cat6 Furukawa, Caixas 305m, Patch Panels 24P e Keystones;
+    3. **Polícia Federal** (`00394494000136-1-000586/2026-000003`): Servidores de rede Rack 1U/2U e Storage NAS;
+    4. **Polícia Federal** (`00394494000136-1-000586/2026-000006`): Rack Fechado 42U, Guias 1U e Réguas PDU 12T;
+    5. **Embrapa** (`00348003000110-1-000689/2026-000001`): Nobreak Senoidal Online 3000VA Rack;
+    6. **UFG** (`01567601000143-1-000347/2024-000001`): Access Points Corporativos Wi-Fi 6 PoE (EAP610);
+    7. **Exército / ESA** (`00394452000103-1-022077/2025-000004`): Mini-Rack 24U de Piso e Nobreak Senoidal 1.5kVA;
+    8. **Exército / GRAFEX** (`00394452000103-1-024864/2025-000001`): Workstations Profissionais de Modelagem e Monitores 27" QHD;
+  - **Valor Total Global Estimado**: **R$ 274.229,45**, fundamentado na Lei nº 14.133/2021.
 
 - [x] **Conformidade Estrita com o Edital da Disciplina (`Projeto-de-Redes-da-Turma-2026-2.pdf`)**:
   - Toda a documentação técnica consolidada em formato Markdown (`.md`) no diretório [`docs/`](docs/), contendo descrição textual aprofundada e links clicáveis para todas as imagens anexadas;
