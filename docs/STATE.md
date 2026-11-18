@@ -20,12 +20,11 @@
     - *Tipo Dispositivo*
     - *Ata Vigente / ID de Contratação PNCP*
   - Consolidação de 4 categorias:
-    1. Ativos de Rede e Comunicação (R$ 18.890,00);
+    1. Ativos de Rede e Comunicação (R$ 18.839,60);
     2. Servidores Corporativos e Armazenamento Central NextGIS (R$ 89.700,00);
-    3. Gabinetes, Passivos e Cabeamento Estruturado (R$ 33.880,00);
-    4. Estações de Trabalho e Periféricos de Pesquisa (R$ 158.150,00);
-  - **Valor Total Global Estimado**: **R$ 300.620,00**, fundamentado na Lei nº 14.133/2021 e em cotações públicas federais no PNCP (Ata nº 004/2025 - ID `32752798000114-1-000028/2025`);
-  - Backup original do Omada preservado em [`NextGisWebFinal_original_omada.xlsx`](file:///c:/Users/Diogo/Desktop/UFS_2026.2/Redes/NextGisWebFinal_original_omada.xlsx).
+    3. Gabinetes, Passivos e Cabeamento Estruturado (R$ 25.554,85);
+    4. Estações de Trabalho e Periféricos de Pesquisa (R$ 140.135,00);
+  - **Valor Total Global Estimado**: **R$ 274.229,45**, fundamentado na Lei nº 14.133/2021 e mapeado a partir de 8 Atas de Registro de Preços e Pregões Federais vigentes (AGU, DNIT, Polícia Federal, Embrapa, UFG, Exército/ESA, Marinha do Brasil e CREFONO6).
 
 - [x] **Conformidade Estrita com o Edital da Disciplina (`Projeto-de-Redes-da-Turma-2026-2.pdf`)**:
   - Toda a documentação técnica consolidada em formato Markdown (`.md`) no diretório [`docs/`](docs/), contendo descrição textual aprofundada e links clicáveis para todas as imagens anexadas;

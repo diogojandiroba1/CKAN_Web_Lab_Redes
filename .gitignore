@@ -34,6 +34,7 @@ CT12.PNG
 # Decisões Arquiteturais e Scripts Internos (Não exigidos no edital)
 docs/adr/
 scripts/
+atas/
 
 # Backups e Utilitários Locais
 NextGisWebFinal_original_omada.xlsx
