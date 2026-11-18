@@ -10,6 +10,10 @@ A planilha executiva em formato Microsoft Excel correspondente a este levantamen
 
 ### 1.1 Ativos de Rede e Comunicação (Simulação TP-Link Omada)
 
+![Lista de Ativos e Quantitativos Exportados do TP-Link Omada](img/omada_lista_equipamentos.png)
+*Link para o arquivo anexado: [omada_lista_equipamentos.png](img/omada_lista_equipamentos.png)*
+*Link para a planilha executiva formatada (Slide 8): [NextGisWebFinal.xlsx](../NextGisWebFinal.xlsx)*
+
 | Item | Tipo Original (Omada) | Tipo Dispositivo | Ata Vigente / ID PNCP | Descrição Técnica e Modelo de Referência | Marca | Qtd | Preço Unit. (R$) | Preço Total (R$) | Link / Fonte TR |
 | :---: | :---: | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
 | **1.1** | ER7206 | Roteador / Gateway VPN | 32752798000114-1-000028/2025 | Roteador corporativo Multi-Gigabit VPN, Firewall SPI, Dual WAN | TP-Link | 1 | 2.850,00 | 2.850,00 | [PNCP](https://pncp.gov.br) |

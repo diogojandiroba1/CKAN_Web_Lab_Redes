@@ -9,6 +9,7 @@ Este documento detalha o projeto lógico da infraestrutura corporativa do labora
 A topologia lógica é agnóstica à localização física dos prédios, estruturando-se estritamente por funções de rede para conter falhas de difusão (*broadcast*), isolar dados sensíveis e padronizar políticas de segurança.
 
 ![Topologia Lógica Hierárquica](img/topologia_logica.png)
+*Link para o arquivo anexado em alta resolução: [topologia_logica.png](img/topologia_logica.png)*
 
 A arquitetura organiza-se nas seguintes camadas:
 
@@ -93,6 +94,7 @@ interface GigabitEthernet0/0.30
 A plataforma geoespacial foi concebida sob o ecossistema de software de código aberto:
 
 ![Arquitetura da Solução NextGIS Web](img/arquitetura_conteineres.png)
+*Link para o arquivo anexado em alta resolução: [arquitetura_conteineres.png](img/arquitetura_conteineres.png)*
 
 1. **Proxy Reverso e Cache Web**: Nginx atuando como ponto único de entrada HTTP/HTTPS (portas 80 e 443), aplicando compactação gzip, cache de recursos estáticos e proteção de cabeçalhos;
 2. **Servidor de Mapas (*Core*)**: NextGIS Web processando chamadas da API REST e requisições OGC (WMS/WFS/TMS);

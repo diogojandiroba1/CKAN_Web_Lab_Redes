@@ -30,6 +30,10 @@ Para montar a topologia canônica no espaço de trabalho (*workspace*), selecion
 
 ## 2. Diagrama da Topologia no Workspace
 
+![Diagrama da Topologia Lógica no Cisco Packet Tracer](img/topologia_logica.png)
+*Link para o arquivo anexado em alta resolução: [topologia_logica.png](img/topologia_logica.png)*
+*Arquivo de simulação executável: [topologia_1.pkt](../packer-tracker/topologia/topologia_1.pkt)*
+
 Disponha os elementos na tela organizados por blocos lógicos:
 
 ```

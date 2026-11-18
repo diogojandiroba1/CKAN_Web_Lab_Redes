@@ -27,10 +27,10 @@
   - **Valor Total Global Estimado**: **R$ 300.620,00**, fundamentado na Lei nº 14.133/2021 e em cotações públicas federais no PNCP (Ata nº 004/2025 - ID `32752798000114-1-000028/2025`);
   - Backup original do Omada preservado em [`NextGisWebFinal_original_omada.xlsx`](file:///c:/Users/Diogo/Desktop/UFS_2026.2/Redes/NextGisWebFinal_original_omada.xlsx).
 
-- [x] **Sincronização da Documentação Técnica e Relatório em LaTeX**:
-  - [`docs/projeto-fisico.md`](file:///c:/Users/Diogo/Desktop/UFS_2026.2/Redes/docs/projeto-fisico.md) e [`docs/bom-orcamento.md`](file:///c:/Users/Diogo/Desktop/UFS_2026.2/Redes/docs/bom-orcamento.md) atualizados com tabelas de ativos e passivos;
-  - Capítulo 4 (`04_Projeto_Fisico_Rede.tex`) e Capítulo 5 (`05_Projeto_Detalhado_Orcamento.tex`) alinhados com o orçamento de R$ 300.620,00;
-  - Documento compilado com código 0 gerando [`Template_Unificado_LATEX/main.pdf`](file:///c:/Users/Diogo/Desktop/UFS_2026.2/Redes/Template_Unificado_LATEX/main.pdf) (29 páginas).
+- [x] **Conformidade Estrita com o Edital da Disciplina (`Projeto-de-Redes-da-Turma-2026-2.pdf`)**:
+  - Toda a documentação técnica consolidada em formato Markdown (`.md`) no diretório [`docs/`](docs/), contendo descrição textual aprofundada e links clicáveis para todas as imagens anexadas;
+  - Plantas consideradas ([`docs/img/planta_CT09.png`](img/planta_CT09.png) e [`docs/img/planta_CT12.png`](img/planta_CT12.png)), diagramas lógicos, diagramas físicos, BOM e orçamento referenciados;
+  - O diretório `Template_Unificado_LATEX/`, capturas brutas de raiz e arquivos auxiliares foram devidamente isolados no [`.gitignore`](.gitignore), mantendo o repositório público limpo e 100% aderente à especificação da professora.
 
 - [x] **Infraestrutura em Nuvem AWS e Automação IaC**:
   - NextGIS Web Community Edition, PostGIS 15 e Redis operacionais na instância EC2 (`http://50.17.116.97`) na porta 80.

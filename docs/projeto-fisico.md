@@ -1,12 +1,36 @@
 # Projeto Físico da Rede e Cabeamento Estruturado
 
-Este documento descreve o projeto físico de infraestrutura, subsistemas de cabeamento estruturado, encaminhamento de eletrocalhas, planta baixa e o diagrama de ocupação vertical do Rack Principal de telecomunicações.
+Este documento descreve o projeto físico de infraestrutura, subsistemas de cabeamento estruturado, encaminhamento de eletrocalhas, plantas consideradas, simulação eletromagnética de cobertura Wi-Fi no software TP-Link Omada Designer e o layout de ocupação vertical em escala U do Rack Principal.
 
 ---
 
-## 1. Subsistemas de Cabeamento Estruturado
+## 1. Plantas Arquitetônicas Consideradas
 
-A instalação física abrange os prédios **CT-09 (Sala 101 - Bancadas dos Pesquisadores e Sala de Servidores)** e **CT-12 (Sala 201 - Laboratório de Geoprocessamento)**, estruturando-se em cinco subsistemas:
+O dimensionamento físico baseia-se nas plantas baixas oficiais e cotadas dos prédios departamentais da Universidade Federal de Sergipe (UFS):
+
+### 1.1 Laboratório CT-09 (Sala 101 - Bancadas de Pesquisa e Rack Central)
+* **Área Total**: $55{,}82\text{ m}^2$ (dimensões de $5{,}78\text{ m} \times 9{,}47\text{ m}$);
+* **Capacidade**: 45 postos de alunos/pesquisadores, mesa de coordenação e bancada de suporte;
+* **Infraestrutura**: Abriga o **Rack Principal de Telecomunicações de 42U** (canto inferior direito) e um ponto de acesso sem fio no teto (**AP-CT09**).
+
+![Planta Baixa Cotada - Laboratório CT-09](img/planta_CT09.png)
+*Link para o arquivo anexado em alta resolução: [planta_CT09.png](img/planta_CT09.png)*
+
+---
+
+### 1.2 Laboratório CT-12 (Sala 201 - Laboratório de Geoprocessamento)
+* **Área Total**: $72{,}63\text{ m}^2$ (dimensões de $7{,}26\text{ m} \times 10{,}06\text{ m}$, pé-direito de $2{,}50\text{ m}$);
+* **Capacidade**: 47 postos de trabalho informatizados e mesa do docente;
+* **Infraestrutura**: Abriga o **Rack Secundário de Distribuição de 24U** (canto superior direito) e um ponto de acesso sem fio no teto (**AP-CT12**).
+
+![Planta Baixa Cotada - Laboratório CT-12](img/planta_CT12.png)
+*Link para o arquivo anexado em alta resolução: [planta_CT12.png](img/planta_CT12.png)*
+
+---
+
+## 2. Subsistemas de Cabeamento Estruturado
+
+A instalação física abrange os prédios **CT-09** e **CT-12**, estruturando-se em cinco subsistemas:
 
 1. **Área de Trabalho (*Work Area*)**:
    * Tomadas modulares com conectores fêmea Keystone RJ-45 Categoria 6 (250 MHz) embutidos nas calhas do mobiliário técnico;
@@ -32,11 +56,12 @@ A instalação física abrange os prédios **CT-09 (Sala 101 - Bancadas dos Pesq
 
 ---
 
-## 2. Planta Baixa de Infraestrutura e Lançamento de Cabos
+## 3. Planta Baixa de Infraestrutura e Lançamento de Cabos
 
-O trajeto dos condutos, localização do rack e distribuição dos pontos de rede nos dois laboratórios é representado na planta física executiva:
+O trajeto dos condutos, localização dos gabinetes e distribuição dos pontos de rede nos dois laboratórios é representado no diagrama executivo unificado:
 
 ![Planta Baixa e Disposição de Pontos de Rede](img/planta_fisica_laboratorios.png)
+*Link para o arquivo anexado em alta resolução: [planta_fisica_laboratorios.png](img/planta_fisica_laboratorios.png)*
 
 ### Quantitativo de Pontos por Sala
 
@@ -48,9 +73,26 @@ O trajeto dos condutos, localização do rack e distribuição dos pontos de red
 | **CT-12 (Sala 201)** | Rede Sem Fio (Ponto 1201) | Caixa de teto RJ-45 Cat6 PoE+ (1x EAP610) | 1 |
 | **Enlace Inter-prédios**| Interligação CT-09 ao CT-12 | Fibra Óptica Monomodo 6FO | 300 m |
 
-### Dimensionamento de Ativos e Cabos Exportado do TP-Link Omada
+---
+
+## 4. Simulação de Cobertura Eletromagnética e Mapa de Calor (TP-Link Omada)
+
+O dimensionamento de cobertura sem fio nos laboratórios foi executado no software **TP-Link Omada Designer**, posicionando 1 ponto de acesso centralizado modelo **TP-Link Omada EAP610 (Wi-Fi 6 AX1800)** em cada laboratório:
+
+![Mapa de Calor e Cobertura Wi-Fi Simulada no TP-Link Omada](img/omada_planta_heatmap.jpg)
+*Link para o arquivo anexado em alta resolução: [omada_planta_heatmap.jpg](img/omada_planta_heatmap.jpg)*
+
+* **Resultado da Propagação RF**: Cobertura integral (100% da área útil das mesas e postos de trabalho) com nível de sinal superior a $-60\text{ dBm}$, viabilizando tráfego de alta velocidade sem áreas de sombra;
+* **Canais e Frequências**: Operação em canais não sobrepostos nas faixas de 2,4 GHz (canais 1 e 6) e 5 GHz (canais 36 e 149), evitando interferência co-canal entre os prédios.
+
+---
+
+## 5. Lista Técnica de Equipamentos Dimensionados pelo Omada
+
+A lista de ativos e cabos gerada pela simulação do TP-Link Omada Designer é sintetizada na tabela abaixo:
 
 ![Lista de Equipamentos Gerada no TP-Link Omada](img/omada_lista_equipamentos.png)
+*Link para o arquivo anexado em alta resolução: [omada_lista_equipamentos.png](img/omada_lista_equipamentos.png)*
 
 | Equipamento Omada | Descrição Técnica do Fabricante | Quantidade da Planta | Função na Infraestrutura |
 | :--- | :--- | :---: | :--- |
@@ -61,13 +103,16 @@ O trajeto dos condutos, localização do rack e distribuição dos pontos de red
 | **CAT.6** | Cabo U/UTP Cat6 23 AWG LSZH (Lançamento) | 24 m | Ramais horizontais primários calculados pelo simulador |
 | **SMF** | Cabo Óptico Monomodo (Single-Mode Fiber) | 31 m | Interligação óptica direta de backbone entre os racks |
 
+A planilha executiva completa com a adição dos servidores, passivos complementares e cotação de atas vigentes do PNCP encontra-se disponível na raiz do repositório em [`NextGisWebFinal.xlsx`](../NextGisWebFinal.xlsx).
+
 ---
 
-## 3. Layout e Diagrama de Ocupação Vertical do Rack (42U)
+## 6. Layout e Diagrama de Ocupação Vertical do Rack (42U)
 
 O Rack Principal de 42U localizado na Sala 101 do CT-09 concentra todos os equipamentos ativos e servidores de processamento e dados:
 
 ![Diagrama Visual de Ocupação do Rack 42U](img/layout_rack_telecomunicacoes.png)
+*Link para o arquivo anexado em alta resolução: [layout_rack_telecomunicacoes.png](img/layout_rack_telecomunicacoes.png)*
 
 ### Diagrama de Elevação Vertical em Escala U (Padrão Executivo)
 

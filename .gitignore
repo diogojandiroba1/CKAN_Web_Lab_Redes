@@ -1,4 +1,8 @@
-# Segredos e Chaves Privadas
+# ==============================================================================
+# .gitignore - Projeto de Redes UFS 2026.2 (NextGIS Web Lab Redes)
+# ==============================================================================
+
+# Segredos, Chaves Privadas e Credenciais
 *.pem
 *.key
 *.id_rsa
@@ -13,27 +17,24 @@ Desktop.ini
 *.swp
 *~
 
-# Materiais de Aula, Enunciados e PDFs de Referência do Professor
+# Template LaTeX (Não exigido no edital - Entrega oficial em Markdown no /docs)
+Template_Unificado_LATEX/
+
+# Materiais Internos de Aula, Calendários e PDFs de Apoio do Professor
 Formularios_atividades/
 calendario.PNG
 Projeto-de-Redes-da-Turma-2026-2.pdf
 Projeto-2026-2-EDITAL-SELECAO-PUBLICA-011-2025 (1).pdf
 Como documentar a infraestrutura de rede da empresa — oHub Base TI.pdf
 
-# Diretórios legados migrados
+# Plantas e Capturas Brutas na Raiz (Já consolidadas e versionadas em docs/img/)
+CT09.PNG
+CT12.PNG
+
+# Backups e Scripts Utilitários Locais
+NextGisWebFinal_original_omada.xlsx
+docs/gerar_planilha_bom.py
 deploy/
-
-# Arquivos Auxiliares e Temporários do LaTeX
-Template_Unificado_LATEX/*.aux
-Template_Unificado_LATEX/*.log
-Template_Unificado_LATEX/*.out
-Template_Unificado_LATEX/*.toc
-Template_Unificado_LATEX/*.lof
-Template_Unificado_LATEX/*.lot
-Template_Unificado_LATEX/*.synctex.gz
-Template_Unificado_LATEX/Capitulos/*.aux
-
-# Backups e Logs
 *.bak
 *.tmp
 *.log
