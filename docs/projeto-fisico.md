@@ -43,10 +43,23 @@ O trajeto dos condutos, localização do rack e distribuição dos pontos de red
 | Edifício / Sala | Finalidade Operacional | Tipo do Ponto | Quantidade |
 | :--- | :--- | :--- | :---: |
 | **CT-09 (Sala 101)** | Bancadas dos Pesquisadores | Keystone RJ-45 Cat6 em mobiliário | 49 |
-| **CT-09 (Sala 101)** | Rede Sem Fio (Ponto 901) | Caixa de teto RJ-45 Cat6 PoE+ | 1 |
+| **CT-09 (Sala 101)** | Rede Sem Fio (Ponto 901) | Caixa de teto RJ-45 Cat6 PoE+ (1x EAP610) | 1 |
 | **CT-12 (Sala 201)** | Laboratório de Geoprocessamento | Keystone RJ-45 Cat6 em mobiliário | 48 |
-| **CT-12 (Sala 201)** | Rede Sem Fio (1201 e WF01) | Caixas de teto RJ-45 Cat6 PoE+ | 2 |
+| **CT-12 (Sala 201)** | Rede Sem Fio (Ponto 1201) | Caixa de teto RJ-45 Cat6 PoE+ (1x EAP610) | 1 |
 | **Enlace Inter-prédios**| Interligação CT-09 ao CT-12 | Fibra Óptica Monomodo 6FO | 300 m |
+
+### Dimensionamento de Ativos e Cabos Exportado do TP-Link Omada
+
+![Lista de Equipamentos Gerada no TP-Link Omada](img/omada_lista_equipamentos.png)
+
+| Equipamento Omada | Descrição Técnica do Fabricante | Quantidade da Planta | Função na Infraestrutura |
+| :--- | :--- | :---: | :--- |
+| **ER7206** | Omada Gigabit VPN Gateway / Security Router | 1 | Roteamento de Borda, NAT e Firewall Perimetral (CT-09) |
+| **SG2210P** | Omada 10-Port Gigabit Smart Switch PoE+ | 2 | Alimentação PoE dos Access Points (1 no CT-09 e 1 no CT-12) |
+| **SG3428** | Omada Access 24-Port Gigabit L2+ Switch | 4 | Comutação e agregação de dados das bancadas (2 no CT-09 e 2 no CT-12) |
+| **EAP610** | AX1800 Ceiling Mount Wi-Fi 6 Access Point | 2 | Cobertura sem fio corporativa de alta densidade (1 por sala) |
+| **CAT.6** | Cabo U/UTP Cat6 23 AWG LSZH (Lançamento) | 24 m | Ramais horizontais primários calculados pelo simulador |
+| **SMF** | Cabo Óptico Monomodo (Single-Mode Fiber) | 31 m | Interligação óptica direta de backbone entre os racks |
 
 ---
 

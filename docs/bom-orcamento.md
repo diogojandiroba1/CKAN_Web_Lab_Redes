@@ -15,7 +15,7 @@ Tabela orçamentária estruturada com as colunas padronizadas de contratação p
 | **1.3** | Roteador Interno | A preencher | Roteador de distribuição com 3 portas GbE nativas, suporte a 802.1Q e DHCP Relay | Cisco 2911 | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **1.4** | Switch Gerenciável | A preencher | Switch de acesso camada 2 com 24 portas 10/100/1000 Mbps e portas Gigabit SFP de uplink | Cisco Catalyst 2960-24TT | 4 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **1.5** | Switch PoE+ | A preencher | Switch gerenciável 8 portas Gigabit PoE+ 802.3at (potência total > 60W) para APs | TP-Link Omada SG2210P | 2 | -- | -- | [PNCP](https://pncp.gov.br) |
-| **1.6** | Access Point Wi-Fi 6 | A preencher | Ponto de acesso teto dual band Wi-Fi 6 (AX1800), Gigabit Ethernet PoE | TP-Link Omada EAP610 | 3 | -- | -- | [PNCP](https://pncp.gov.br) |
+| **1.6** | Access Point Wi-Fi 6 | A preencher | Ponto de acesso teto dual band Wi-Fi 6 (AX1800), Gigabit Ethernet PoE (1x CT-09 e 1x CT-12) | TP-Link Omada EAP610 | 2 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **2.1** | Servidor Web 1U | A preencher | Servidor rack 1U, Intel Xeon, 64 GB RAM DDR4 ECC, 2x 480 GB SSD NVMe (NextGIS Core e Nginx) | Dell PowerEdge R440/R450 | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **2.2** | Servidor Banco 2U | A preencher | Servidor rack 2U, Intel Xeon, 128 GB RAM DDR4 ECC, 4x 1.2 TB SAS 10K RAID 10 (PostgreSQL/PostGIS) | Dell PowerEdge R540/R550 | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **2.3** | Servidor DHCP 1U | A preencher | Servidor rack 1U, Intel Xeon, 32 GB RAM DDR4 ECC, 2x 240 GB SSD SATA (Serviços DHCP/DNS/NTP) | Dell PowerEdge R250/R350 | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
