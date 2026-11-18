@@ -105,13 +105,13 @@ O repositório está organizado segundo as diretrizes de entrega da disciplina:
 
 ```text
 ├── README.md               # Esta página de apresentação executiva
+├── NextGisWebFinal.xlsx    # Planilha orçamentária executiva (Omada / PNCP - Slide 8)
 ├── docs/                   # Documentação técnica em Markdown com imagens
 │   ├── projeto-logico.md   # Arquitetura lógica 3 camadas, VLANs e ACLs
 │   ├── projeto-fisico.md   # Planta física, cabeamento e infraestrutura
 │   ├── diagrama-ocupacao-rack.md # Layout e elevação vertical em escala U (42U e 24U)
 │   ├── bom-orcamento.md    # Lista de materiais (BOM) e atas do PNCP
 │   ├── mecanismos-avaliacao.md # Homologação e testes empíricos
-│   ├── adr/                # Architectural Decision Records (ADRs)
 │   └── img/                # Diagramas, topologias e plantas
 ├── iac/                    # Infraestrutura como Código
 │   ├── docker-compose.yml  # Automação da plataforma NextGIS Web
@@ -122,6 +122,5 @@ O repositório está organizado segundo as diretrizes de entrega da disciplina:
 │   ├── manual-ubuntu.md    # Manual do pesquisador no Ubuntu
 │   ├── comandos-teste.md   # Roteiro de testes de bancada do software
 │   └── video-apresentacao.md # Roteiro e link do vídeo explicativo
-├── scripts/                # Scripts de configuração dos ativos Cisco IOS / ASA
 └── packer-tracker/         # Arquivos de simulação (.pkt) e topologias
 ```

@@ -31,7 +31,11 @@ Como documentar a infraestrutura de rede da empresa — oHub Base TI.pdf
 CT09.PNG
 CT12.PNG
 
-# Backups e Scripts Utilitários Locais
+# Decisões Arquiteturais e Scripts Internos (Não exigidos no edital)
+docs/adr/
+scripts/
+
+# Backups e Utilitários Locais
 NextGisWebFinal_original_omada.xlsx
 docs/gerar_planilha_bom.py
 deploy/
