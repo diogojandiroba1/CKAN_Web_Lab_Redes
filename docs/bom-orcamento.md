@@ -29,8 +29,8 @@ Tabela orçamentária estruturada com as colunas padronizadas de contratação p
 
 | Item | Tipo Dispositivo | Ata Vigente / ID PNCP | Descrição Técnica e Modelo de Referência | Marca / Modelo | Qtd | Preço Unit. (R$) | Preço Total (R$) | Link / Fonte Oficial |
 | :---: | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :--- |
-| **3.1** | Rack 42U | A preencher | Gabinete fechado padrão 19 polegadas 42U x 1000 mm com porta de vidro e ventilação forçada | MaxEletron / GP Racks | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
-| **3.2** | Rack 24U | A preencher | Gabinete fechado padrão 19 polegadas 24U x 670 mm para o Prédio CT-09 | MaxEletron / GP Racks | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
+| **3.1** | Rack 42U | A preencher | Gabinete fechado padrão 19 polegadas 42U x 1000 mm com porta de vidro e ventilação forçada (CT-09) | MaxEletron / GP Racks | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
+| **3.2** | Rack 24U | A preencher | Gabinete fechado padrão 19 polegadas 24U x 670 mm para o Prédio CT-12 | MaxEletron / GP Racks | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **3.3** | Patch Panel Cat6 | A preencher | Painel de manobra 24 portas RJ-45 Categoria 6 com guia traseira | Furukawa SohoPlus 24P | 5 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **3.4** | Bobina Cabo Cat6 | A preencher | Caixa com 305 metros de cabo de par trançado U/UTP Cat6 23 AWG 4 pares LSZH azul | Furukawa GigaLan LSZH | 8 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **3.5** | Conector Keystone | A preencher | Módulo conector fêmea Keystone RJ-45 Cat6 T568A/B para espelhos | Furukawa SohoPlus Cat6 | 120 | -- | -- | [PNCP](https://pncp.gov.br) |
@@ -41,7 +41,7 @@ Tabela orçamentária estruturada com as colunas padronizadas de contratação p
 | **3.10**| DIO Óptico 1U | A preencher | Distribuidor Interno Óptico 1U 24 fibras com acopladores LC-UPC | Furukawa TeraLan DIO | 2 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **3.11**| Cabo Óptico 6FO | A preencher | Cabo óptico monomodo SMF 9/125 $\mu$m geleado para duto subterrâneo (metros) | Furukawa CFOAC-SM | 300 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **3.12**| Nobreak 3000VA | A preencher | Nobreak senoidal online dupla conversão 3000 VA / 2700 W padrão rack 2U | SMS / APC On-Line 3kVA | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
-| **3.13**| Nobreak 1500VA | A preencher | Nobreak senoidal interativo 1500 VA para rack do Prédio CT-09 | SMS / APC 1500VA | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
+| **3.13**| Nobreak 1500VA | A preencher | Nobreak senoidal interativo 1500 VA para rack do Prédio CT-12 | SMS / APC 1500VA | 1 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **4.1** | Workstation Pesquisa | A preencher | Estação de trabalho Core i7, 32 GB RAM, SSD NVMe 1 TB, GPU RTX 4060 para SIG e modelagem | Dell Precision / Lenovo | 15 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **4.2** | Monitor 27" QHD | A preencher | Monitor profissional 27 polegadas IPS QHD (2560x1440) com suporte ergonômico | Dell UltraSharp 27 | 15 | -- | -- | [PNCP](https://pncp.gov.br) |
 | **4.3** | Impressora A3/A4 | A preencher | Impressora multifuncional colorida laser com suporte a impressão cartográfica A3 e A4 | Epson / HP Enterprise | 1 | -- | -- | [PNCP](https://pncp.gov.br) |

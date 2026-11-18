@@ -11,7 +11,7 @@
 
 Este projeto compreende o planejamento, especificação técnica, projeto lógico e físico de rede, orçamentação pública e implantação automatizada da infraestrutura de telecomunicações e serviços de dados voltada ao **Grupo de Pesquisa em Modelagem Hidrológica em Bacias Hidrográficas Nordestinas** da UFS.
 
-A infraestrutura atende dois prédios universitários interligados por fibra óptica: o **Laboratório de Geoprocessamento e Sala de Servidores (CT-12, Sala 201)** e a **Sala dos Pesquisadores (CT-09, Sala 101)**, integrando a comutação, o roteamento de alta disponibilidade, segurança perimetral com firewall dedicado e a publicação de mapas interativos através da plataforma de código aberto **NextGIS Web**.
+A infraestrutura atende dois prédios universitários interligados por fibra óptica: a **Sala dos Pesquisadores e Sala de Servidores (CT-09, Sala 101)** abrigando o Rack Principal de 42U, e o **Laboratório de Geoprocessamento (CT-12, Sala 201)** abrigando o Rack Secundário de 24U, integrando a comutação, o roteamento de alta disponibilidade, segurança perimetral com firewall dedicado e a publicação de mapas interativos através da plataforma de código aberto **NextGIS Web**.
 
 ---
 
@@ -45,7 +45,7 @@ Com a expansão dos projetos de pesquisa financiados e a necessidade de disponib
 * Projeto Lógico de Rede com roteamento inter-VLAN, DHCP Relay e Listas de Controle de Acesso (ACL);
 * Projeto de Segurança Perimetral com Cisco ASA 5506-X e regras de inspeção modular (MPF);
 * Projeto Físico de Cabeamento Estruturado Categoria 6 (97 pontos de dados) e backbone óptico monomodo inter-predial de 300 metros;
-* Layout de ocupação vertical de equipamentos no Rack 42U da Sala 201 (CT-12);
+* Layout de ocupação vertical de equipamentos no Rack 42U da Sala 101 (CT-09);
 * Simulação e homologação completa no Cisco Packet Tracer;
 * Automação multicontêiner (*Infrastructure as Code*) via Docker Compose da plataforma NextGIS Web e PostGIS;
 * Lista Técnica de Materiais (BOM) e levantamento de atas no Portal Nacional de Contratações Públicas (PNCP).

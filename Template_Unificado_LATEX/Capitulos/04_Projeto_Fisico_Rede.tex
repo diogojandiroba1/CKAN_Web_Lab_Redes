@@ -49,8 +49,8 @@ O encaminhamento físico contempla a desativação das canaletas plásticas sobr
 
 Os equipamentos ativos e passivos de rede são acomodados em dois gabinetes metálicos padrão 19 polegadas:
 \begin{enumerate}
-    \item \textbf{Rack Principal (CT-12 Sala 201)}: Gabinete de piso autossustentado fechado com padrão $42\text{U} \times 800\text{mm} \times 1000\text{mm}$, equipado com porta frontal de vidro temperado, fechadura com chave, painéis laterais ventilados removíveis e teto com módulo de ventilação forçada de 4 ventiladores. Abriga os servidores Dell PowerEdge, os roteadores corporativos e firewall Cisco, os switches de acesso e distribuição, e o nobreak senoidal. O roteador do provedor (\texttt{ISP-UFS}), retratado no domínio externo da topologia lógica, localiza-se no centro de dados central do campus da UFS (NTI), não ocupando espaço físico no rack local;
-    \item \textbf{Rack Secundário (CT-09 Sala 101)}: Gabinete padrão 19 polegadas de $24\text{U} \times 600\text{mm} \times 670\text{mm}$, abrigando o switch de acesso local e os painéis de manobra dos 49 pontos de dados do Prédio CT-09.
+    \item \textbf{Rack Principal (CT-09 Sala 101)}: Gabinete de piso autossustentado fechado com padrão $42\text{U} \times 800\text{mm} \times 1000\text{mm}$, equipado com porta frontal de vidro temperado, fechadura com chave, painéis laterais ventilados removíveis e teto com módulo de ventilação forçada de 4 ventiladores. Abriga os servidores Dell PowerEdge, os roteadores corporativos e firewall Cisco, os switches de acesso e distribuição, e o nobreak senoidal. O roteador do provedor (\texttt{ISP-UFS}), retratado no domínio externo da topologia lógica, localiza-se no centro de dados central do campus da UFS (NTI), não ocupando espaço físico no rack local;
+    \item \textbf{Rack Secundário (CT-12 Sala 201)}: Gabinete padrão 19 polegadas de $24\text{U} \times 600\text{mm} \times 670\text{mm}$, abrigando o switch de acesso local e os painéis de manobra dos 48 pontos de dados do Prédio CT-12.
 \end{enumerate}
 
 A Figura~\ref{fig:layout_rack} apresenta a disposição vertical dos módulos no rack principal.
@@ -62,7 +62,7 @@ A Tabela~\ref{tab:layout_rack} sintetiza a distribuição das unidades de rack (
 \begin{table}[htbp]
 \centering
 \footnotesize
-\caption{Ocupação vertical e distribuição de equipamentos no Rack Principal 42U (CT-12).}
+\caption{Ocupação vertical e distribuição de equipamentos no Rack Principal 42U (CT-09).}
 \label{tab:layout_rack}
 \begin{tabularx}{\textwidth}{|c|l|Y|Y|}
 \hline
@@ -72,7 +72,7 @@ A Tabela~\ref{tab:layout_rack} sintetiza a distribuição das unidades de rack (
 39 -- 40 & Roteador de Borda & Cisco ISR 4321 & Conexão WAN UFS e NAT de saída \\ \hline
 38 & Firewall Físico & Cisco ASA 5506-X 1U & Inspeção de estado (MPF) e segurança perimetral \\ \hline
 36 -- 37 & Roteador Interno & Cisco 2911 & Roteamento inter-VLAN e DHCP Relay \\ \hline
-34 -- 35 & Switch Central & Cisco Catalyst 2960-24TT & Distribuição e agregação local CT-12 \\ \hline
+34 -- 35 & Switch Central & Cisco Catalyst 2960-24TT & Distribuição e agregação local CT-09 \\ \hline
 32 -- 33 & Guia de Cabos & Organizador Horizontal 1U & Manobra dos cabos patch cord \\ \hline
 29 -- 31 & Patch Panels Cat6 & Furukawa SohoPlus 24P & Terminação do cabeamento horizontal \\ \hline
 27 -- 28 & Switch PoE+ Wi-Fi & TP-Link Omada SG2210P & Alimentação dos Access Points \\ \hline

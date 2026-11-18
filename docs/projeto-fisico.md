@@ -6,7 +6,7 @@ Este documento descreve o projeto físico de infraestrutura, subsistemas de cabe
 
 ## 1. Subsistemas de Cabeamento Estruturado
 
-A instalação física abrange os prédios **CT-09 (Sala 101 - Bancadas dos Pesquisadores)** e **CT-12 (Sala 201 - Laboratório de Geoprocessamento e Sala de Servidores)**, estruturando-se em cinco subsistemas:
+A instalação física abrange os prédios **CT-09 (Sala 101 - Bancadas dos Pesquisadores e Sala de Servidores)** e **CT-12 (Sala 201 - Laboratório de Geoprocessamento)**, estruturando-se em cinco subsistemas:
 
 1. **Área de Trabalho (*Work Area*)**:
    * Tomadas modulares com conectores fêmea Keystone RJ-45 Categoria 6 (250 MHz) embutidos nas calhas do mobiliário técnico;
@@ -27,8 +27,8 @@ A instalação física abrange os prédios **CT-09 (Sala 101 - Bancadas dos Pesq
    * Terminação em Distribuidores Internos Ópticos (DIO) padrão 19" 1U com conectores LC-UPC e transceivers SFP Gigabit Ethernet 1000BASE-LX.
 
 5. **Salas de Telecomunicações e Gabinetes de Equipamentos**:
-   * **Rack Principal (CT-12 Sala 201)**: Gabinete de piso padrão 19" $42\text{U} \times 800\text{mm} \times 1000\text{mm}$ com porta de vidro temperado e exaustão forçada;
-   * **Rack Secundário (CT-09 Sala 101)**: Gabinete padrão 19" $24\text{U} \times 600\text{mm} \times 670\text{mm}$.
+   * **Rack Principal (CT-09 Sala 101)**: Gabinete de piso padrão 19" $42\text{U} \times 800\text{mm} \times 1000\text{mm}$ com porta de vidro temperado e exaustão forçada, abrigando servidores, roteadores, firewall e nobreak;
+   * **Rack Secundário (CT-12 Sala 201)**: Gabinete padrão 19" $24\text{U} \times 600\text{mm} \times 670\text{mm}$ para agregação local dos pontos do laboratório.
 
 ---
 
@@ -52,7 +52,7 @@ O trajeto dos condutos, localização do rack e distribuição dos pontos de red
 
 ## 3. Layout e Diagrama de Ocupação Vertical do Rack (42U)
 
-O Rack Principal de 42U localizado na Sala 201 do CT-12 concentra todos os equipamentos ativos e servidores de processamento e dados:
+O Rack Principal de 42U localizado na Sala 101 do CT-09 concentra todos os equipamentos ativos e servidores de processamento e dados:
 
 ![Diagrama Visual de Ocupação do Rack 42U](img/layout_rack_telecomunicacoes.png)
 
