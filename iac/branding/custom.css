@@ -1,0 +1,105 @@
+/* ==============================================================================
+   Customizacao Visual Oficial - Portal de Dados Hidrologicos UFS
+   ============================================================================== */
+
+/* Barra de topo de conta / administracao */
+.account-masthead {
+  background-color: #001B30 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.account-masthead a {
+  color: #E2E8F0 !important;
+  font-weight: 500 !important;
+}
+
+.account-masthead a:hover {
+  color: #F59E0B !important;
+}
+
+/* Cabecalho Principal (Masthead) em Azul Institucional UFS */
+header.masthead {
+  background: linear-gradient(135deg, #002244 0%, #003B73 60%, #004B87 100%) !important;
+  border-bottom: 3.5px solid #E5A823 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  padding: 10px 0 !important;
+}
+
+header.masthead .logo img {
+  max-height: 52px !important;
+  width: auto !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+header.masthead .navbar-nav .nav-link {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 8px 16px !important;
+  transition: color 0.2s ease;
+}
+
+header.masthead .navbar-nav .nav-link:hover,
+header.masthead .navbar-nav .active > .nav-link {
+  color: #F59E0B !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 4px !important;
+}
+
+/* Campo de busca do cabecalho */
+header.masthead .site-search input {
+  border-radius: 4px 0 0 4px !important;
+  border: 1px solid #CBD5E1 !important;
+  box-shadow: none !important;
+}
+
+header.masthead .site-search button {
+  background-color: #E5A823 !important;
+  color: #002244 !important;
+  border-radius: 0 4px 4px 0 !important;
+  border: 1px solid #D97706 !important;
+  font-weight: bold !important;
+}
+
+header.masthead .site-search button:hover {
+  background-color: #D97706 !important;
+  color: #FFFFFF !important;
+}
+
+/* Caixas e Cards da Pagina Inicial */
+.box {
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.box-header {
+  background-color: #F8FAFC !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  color: #002B49 !important;
+  font-weight: 700 !important;
+}
+
+/* Tags populares e badges */
+.tag, .badge {
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+
+/* Rodape Institucional */
+footer.site-footer, .footer {
+  background: #001B30 !important;
+  color: #94A3B8 !important;
+  border-top: 3px solid #004B87 !important;
+  padding: 30px 0 20px 0 !important;
+}
+
+footer.site-footer a, .footer a {
+  color: #38BDF8 !important;
+  text-decoration: none !important;
+}
+
+footer.site-footer a:hover, .footer a:hover {
+  color: #F59E0B !important;
+  text-decoration: underline !important;
+}
