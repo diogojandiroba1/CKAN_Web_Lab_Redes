@@ -1,106 +1,120 @@
-# Manual de Implantação e Automação (IaC)
+# Manual de Implantação e Automação (IaC) — CKAN 2.10
 
-Este documento descreve o procedimento de implantação automatizada da plataforma **NextGIS Web** integrada ao banco relacional e espacial **PostgreSQL 16 com extensão PostGIS 3.4**, fila de mensageria **Redis 7.2** e proxy reverso **Nginx**.
-
----
-
-## 1. Pré-requisitos de Sistema
-
-O ambiente de execução foi homologado para **Ubuntu Server 24.04 LTS (x86_64)**, tanto em servidores físicos dedicados no datacenter quanto em instâncias de computação em nuvem (**AWS EC2 t3.medium** ou superior).
-
-* **Processador**: 2 vCPUs ou superior;
-* **Memória RAM**: Mínimo de 4 GB (recomendado 8 GB para indexação espacial pesada);
-* **Armazenamento**: 30 GB SSD (volumes persistentes de dados geográficos e imagens raster);
-* **Rede**: Portas TCP 80 (HTTP), 443 (HTTPS) e 22 (SSH) abertas no firewall / grupo de segurança.
+Este guia detalha a implantação da infraestrutura de dados abertos baseada no **CKAN 2.10** (*Comprehensive Knowledge Archive Network*). O arranjo desacopla o catálogo em microsserviços conteinerizados: motor de busca e indexação facetada com **Apache Solr 9**, banco relacional com **PostgreSQL 15 / PostGIS**, fila de sessões em memória com **Redis 7.2**, extrator tabular com **DataPusher** e terminação de tráfego com *proxy reverso* **Nginx**.
 
 ---
 
-## 2. Instalação do Docker e Docker Compose
+## 1. Requisitos de Hardware e Sistema Operacional
 
-Atualize os pacotes do sistema e instale os componentes oficiais do Docker Engine:
+O ambiente foi homologado sobre **Ubuntu Server 24.04 LTS (x86_64)**, tanto na infraestrutura física do *datacenter* (servidor de borda 1U Dell PowerEdge) quanto em instâncias de nuvem (**AWS EC2 t3.medium** ou superior):
+
+* **CPU**: 2 vCPUs dedicadas (arquitetura x86_64);
+* **Memória RAM**: 4 GB no mínimo (recomendado 8 GB para comportar o *heap* da JVM do Solr 9 e a base PostgreSQL simultaneamente);
+* **Armazenamento**: 30 GB SSD em partição `/var/lib/docker`;
+* **Rede**: Portas TCP 80 (*HTTP*), 443 (*HTTPS*) e 22 (*SSH*) liberadas nas regras de entrada da VLAN de DMZ e *security groups*.
+
+---
+
+## 2. Preparação do Host e Docker Engine
+
+Instale os pacotes oficiais do Docker Engine no nó Ubuntu:
 
 ```bash
-# 1. Atualizacao dos repositorios locais
+# 1. Atualizar indice de pacotes
 sudo apt update && sudo apt upgrade -y
 
-# 2. Instalacao de utilitarios de seguranca e certificados
+# 2. Instalar certificados e ferramentas de transporte
 sudo apt install -y ca-certificates curl gnupg lsb-release
 
-# 3. Adicao da chave GPG oficial do Docker
+# 3. Importar a chave GPG do repositorio oficial do Docker
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-# 4. Configuracao do repositorio estavel do Docker
+# 4. Configurar repositorio estavel
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# 5. Instalacao dos pacotes Docker Engine e Compose Plugin
+# 5. Instalar Docker Engine e plugin do Docker Compose
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# 6. Adicao do usuario atual ao grupo docker (evita uso de sudo)
+# 6. Conceder permissao de execucao ao usuario local
 sudo usermod -aG docker $USER
 ```
 
-> **Atenção**: Encerre a sessão SSH (`exit`) e reconecte para que a permissão de grupo seja carregada.
+> Reinicie a sessão SSH (`exit` e reconexão) para aplicar as permissões do grupo `docker`.
 
 ---
 
-## 3. Estrutura de Arquivos e Execução
+## 3. Topologia dos Arquivos de Automação
 
-Os arquivos de automação encontram-se organizados neste diretório (`/iac`):
+O diretório `/iac` centraliza a declaração da pilha:
 
 ```text
 iac/
-├── docker-compose.yml   # Orquestracao multicamadas dos servicos
-├── nginx.conf           # Proxy reverso e tratamento de cabecalhos
-└── manual-implantacao.md # Guia de inicializacao e testes
+├── docker-compose.yml              # Definicao declarativa multicamada dos servicos
+├── nginx.conf                      # Proxy reverso, headers de seguranca e limites de payload
+├── dados/
+│   └── pluviometria_rio_sergipe.csv # Dataset hidrologico de Sergipe (1.830 registros)
+└── manual-implantacao.md            # Documentacao de operacao e manutencao
 ```
 
-### Inicialização dos Serviços em Segundo Plano
+---
 
-Execute no terminal dentro do diretório `/iac`:
+## 4. Inicialização e Subida dos Contêineres
+
+Para iniciar a pilha completa com orquestração automática de dependências e checagens de integridade (*healthchecks*):
 
 ```bash
-# Subir contêineres em modo daemon
+cd iac/
 docker compose up -d
 ```
 
-### Verificação do Estado da Aplicação
+### Verificação do Estado da Pilha
 
 ```bash
-# Verificar contêineres em execução
 docker compose ps
 ```
 
 Saída esperada:
 
 ```text
-NAME          IMAGE                      COMMAND                  SERVICE       CREATED          STATUS          PORTS
-ngw_core      nextgis/nextgisweb:latest  "/entrypoint.sh run…"    nextgisweb    30 seconds ago   Up 30 seconds   8080/tcp
-ngw_postgis   postgis/postgis:16-3.4     "docker-entrypoint.s…"   postgis_db    30 seconds ago   Up 30 seconds   5432/tcp
-ngw_proxy     nginx:alpine               "/docker-entrypoint.…"   nginx_proxy   30 seconds ago   Up 30 seconds   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp
-ngw_redis     redis:7.2-alpine           "docker-entrypoint.s…"   redis_cache   30 seconds ago   Up 30 seconds   6379/tcp
-```
-
-### Inspeção de Logs em Tempo Real
-
-```bash
-# Monitorar logs de inicializacao da aplicacao
-docker compose logs -f nextgisweb
+NAME              IMAGE                              SERVICE       STATUS                   PORTS
+ckan_app          ckan/ckan-base:2.10                ckan          Up 2 minutes (healthy)   5000/tcp
+ckan_datapusher   ckan/ckan-base-datapusher:0.0.21   datapusher    Up 2 minutes (healthy)   8800/tcp
+ckan_db           postgis/postgis:15-3.3-alpine      db            Up 2 minutes (healthy)   5432/tcp
+ckan_nginx        nginx:stable-alpine                nginx_proxy   Up 2 minutes             0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp
+ckan_redis        redis:7.2-alpine                   redis         Up 2 minutes (healthy)   6379/tcp
+ckan_solr         ckan/ckan-solr:2.10-solr9          solr          Up 2 minutes (healthy)   8983/tcp
 ```
 
 ---
 
-## 4. Parada e Manutenção dos Serviços
+## 5. Rotina de Carga do Dataset Hidrológico da UFS (SIGAA)
+
+Para popular a organização do grupo de pesquisa, grupos temáticos e carregar a série histórica de monitoramento da Bacia do Rio Sergipe (Projeto PVB4495-2016):
 
 ```bash
-# Pausar os serviços sem remover os dados
+# Execucao do script de seed de dados via API REST
+python3 seed_ckan_data.py
+```
+
+O script autentica via *token* JWT de administrador, cria a organização `modelagem-hidrologica-ufs` (*Modelagem Hidrológica em Bacias Hidrográficas Nordestinas*), vincula os grupos temáticos de recursos hídricos e dispara o *upload* multipart do CSV para o catálogo e o DataStore.
+
+---
+
+## 6. Manutenção e Ciclo de Vida
+
+```bash
+# Inspecionar logs unificados em tempo real
+docker compose logs -f ckan
+
+# Interromper servicos preservando volumes persistentes
 docker compose stop
 
-# Reiniciar todos os serviços
-docker compose restart
+# Reiniciar servicos
+docker compose start
 
-# Encerrar os serviços (mantendo os volumes de dados persistentes)
+# Destruir contêineres e redes (mantendo volumes)
 docker compose down
 ```

@@ -14,7 +14,7 @@ Os itens foram mapeados a partir de contratações públicas federais homologada
 | :--- | :--- | :---: | :---: | :--- | :---: |
 | AGU (Advocacia-Geral da União) | PE SRP nº 11/2026 | Ata 07/2026 | `26994558000123-1-000147/2026-000001` | Switches, gateway VPN, fibras ópticas, patch cords, DIO e multifuncional | [Acessar Ata](https://pncp.gov.br/app/atas/26994558000123/2026/147/1) |
 | DNIT (Depto. Nac. Infraestrutura de Transportes) | PE SRP nº 90368/2025 | Ata 00011/2025 | `04892707000100-1-000453/2025-000002` | Cabos U/UTP Cat6 Furukawa, caixas 305 m, patch panels 24P e keystones | [Acessar Ata](https://pncp.gov.br/app/atas/04892707000100/2025/453/2) |
-| Polícia Federal (MJSP - DTI/PF) | PE SRP nº 90004/2026 | Ata 00005/2026 | `00394494000136-1-000586/2026-000003` | Servidores rack 1U/2U (NextGIS Web, PostGIS, DHCP) e storage NAS | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/3) |
+| Polícia Federal (MJSP - DTI/PF) | PE SRP nº 90004/2026 | Ata 00005/2026 | `00394494000136-1-000586/2026-000003` | Servidores rack 1U/2U (CKAN Portal, PostGIS, DHCP) e storage NAS | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/3) |
 | Polícia Federal (MJSP - DTI/PF) | PE SRP nº 90004/2026 | Ata 00008/2026 | `00394494000136-1-000586/2026-000006` | Rack fechado 42U, guias horizontais 1U e réguas PDU 12 tomadas | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/6) |
 | Embrapa (Agricultura Digital / Campinas) | PE SRP nº 90031/2025 | Ata 00031/2025 | `00348003000110-1-000689/2026-000001` | Nobreak senoidal online 3000 VA rack (PHD EA 3K) | [Acessar Ata](https://pncp.gov.br/app/atas/00348003000110/2026/689/1) |
 | UFG (Universidade Federal de Goiás) | PE SRP nº 90026/2024 | Ata 00080/2025 | `01567601000143-1-000347/2024-000001` | Ponto de acesso corporativo Wi-Fi 6 PoE (EAP610) | [Acessar Ata](https://pncp.gov.br/app/atas/01567601000143/2024/347/1) |
@@ -45,11 +45,11 @@ O roteador de borda da operadora (`ISP-UFS`) não gera custo neste orçamento po
 
 ---
 
-### 2.2 Servidores Corporativos e Armazenamento Central (Sistema NextGIS)
+### 2.2 Servidores Corporativos e Armazenamento Central (Sistema CKAN de Dados Abertos)
 
 | Item | Tipo Original | Tipo Dispositivo | Ata Vigente / ID PNCP | Descrição Técnica e Modelo de Referência | Marca | Qtd | Preço Unit. (R$) | Preço Total (R$) | Link no PNCP |
 | :---: | :---: | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| 2.1 | -- | Servidor Web NextGIS 1U | 00394494000136-1-000586/2026-000003 | Servidor Rack 1U, Intel Xeon Silver, 64 GB RAM DDR4 ECC, 2x 480 GB SSD NVMe | Dell | 1 | 24.500,00 | 24.500,00 | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/3) |
+| 2.1 | -- | Servidor Web CKAN Portal 1U | 00394494000136-1-000586/2026-000003 | Servidor Rack 1U, Intel Xeon Silver, 64 GB RAM DDR4 ECC, 2x 480 GB SSD NVMe | Dell | 1 | 24.500,00 | 24.500,00 | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/3) |
 | 2.2 | -- | Servidor Banco PostGIS 2U | 00394494000136-1-000586/2026-000003 | Servidor Rack 2U, Intel Xeon Silver, 128 GB RAM DDR4 ECC, 4x 1.2 TB SAS 10K RAID 10 | Dell | 1 | 38.900,00 | 38.900,00 | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/3) |
 | 2.3 | -- | Servidor DHCP Dedicado 1U | 00394494000136-1-000586/2026-000003 | Servidor Rack 1U, Intel Xeon E-2324, 32 GB RAM DDR4 ECC, 2x 240 GB SSD SATA | Dell | 1 | 16.800,00 | 16.800,00 | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/3) |
 | 2.4 | -- | Storage NAS Backup 4B | 00394494000136-1-000586/2026-000003 | Unidade NAS 4 Baias 16 TB brutos RAID 5 para repositório de cópias de segurança | QNAP | 1 | 9.500,00 | 9.500,00 | [Acessar Ata](https://pncp.gov.br/app/atas/00394494000136/2026/586/3) |

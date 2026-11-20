@@ -1,73 +1,112 @@
 services:
-  # Servidor 2: SGBD Relacional e Espacial
-  postgis_db:
-    image: postgis/postgis:15-3.3
-    container_name: ngw_postgis
-    restart: always
+  # Servidor 2: SGBD Relacional e Armazenamento Estruturado (PostgreSQL + PostGIS)
+  db:
+    image: postgis/postgis:15-3.3-alpine
+    container_name: ckan_db
+    restart: unless-stopped
     environment:
-      POSTGRES_DB: nextgisweb_db
-      POSTGRES_USER: nextgis_admin
-      POSTGRES_PASSWORD: SecretPostgisPassword2026!
+      POSTGRES_USER: ckan_default
+      POSTGRES_PASSWORD: ckan_db_password_ufs2026
+      POSTGRES_DB: ckan_default
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - postgis_data:/var/lib/postgresql/data
-      - ./backups:/backups
+      - pg_data:/var/lib/postgresql/data
     networks:
-      - internal_gis_net
+      - internal_ckan_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ckan_default"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  # Fila de Mensagens e Cache para Processamento Assincrono
-  redis_cache:
+  # Servidor 1: Motor de Indexacao e Busca Textual/Facetada (Apache Solr 9)
+  solr:
+    image: ckan/ckan-solr:2.10-solr9
+    container_name: ckan_solr
+    restart: unless-stopped
+    networks:
+      - internal_ckan_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8983/solr/ckan/admin/ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # Servidor 1: Fila em Memoria e Cache de Sessoes (Redis)
+  redis:
     image: redis:7.2-alpine
-    container_name: ngw_redis
-    restart: always
+    container_name: ckan_redis
+    restart: unless-stopped
     networks:
-      - internal_gis_net
+      - internal_ckan_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  # Servidor 1: Nucleo da Aplicacao NextGIS Web Community Edition
-  nextgisweb:
-    image: nextgis/nextgisweb-ce:latest
-    container_name: ngw_core
-    command: server
-    restart: always
-    depends_on:
-      - postgis_db
-      - redis_cache
-    environment:
-      NEXTGISWEB__CORE__LOCALE__DEFAULT: "pt_BR"
-      NEXTGISWEB__DATABASE__URL: "postgresql://nextgis_admin:SecretPostgisPassword2026!@postgis_db:5432/nextgisweb_db"
-      NEXTGISWEB__REDIS__URL: "redis://redis_cache:6379/0"
-    volumes:
-      - nextgis_data:/opt/crater/data
-      - nextgis_backup:/opt/crater/backup
+  # Servidor 1: Extracao e Carga Automatica de Datasets Tabulares (DataPusher)
+  datapusher:
+    image: ckan/ckan-base-datapusher:0.0.21
+    container_name: ckan_datapusher
+    restart: unless-stopped
     networks:
-      - internal_gis_net
+      - internal_ckan_net
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8800"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # Servidor 1: Nucleo da Plataforma de Dados Abertos (CKAN 2.10)
+  ckan:
+    image: ckan/ckan-base:2.10
+    container_name: ckan_app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      solr:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      CKAN_SITE_URL: "http://localhost"
+      CKAN_SQLALCHEMY_URL: "postgresql://ckan_default:ckan_db_password_ufs2026@db/ckan_default"
+      CKAN_SOLR_URL: "http://solr:8983/solr/ckan"
+      CKAN_REDIS_URL: "redis://redis:6379/1"
+      CKAN_DATAPUSHER_URL: "http://datapusher:8800"
+      CKAN_SYSADMIN_NAME: "ckan_admin"
+      CKAN_SYSADMIN_PASSWORD: "admin_password_ufs2026"
+    volumes:
+      - ckan_storage:/var/lib/ckan
+    networks:
+      - internal_ckan_net
       - dmz_net
 
-  # Proxy Reverso e Terminacao HTTP (Porta 80 e 443)
+  # Borda de Entrada: Proxy Reverso e Terminacao HTTP/HTTPS (Nginx)
   nginx_proxy:
-    image: nginx:alpine
-    container_name: ngw_proxy
-    restart: always
+    image: nginx:stable-alpine
+    container_name: ckan_nginx
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
     depends_on:
-      - nextgisweb
+      - ckan
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - dmz_net
 
 volumes:
-  postgis_data:
+  pg_data:
     driver: local
-  nextgis_data:
-    driver: local
-  nextgis_backup:
+  ckan_storage:
     driver: local
 
 networks:
-  internal_gis_net:
+  internal_ckan_net:
     driver: bridge
   dmz_net:
     driver: bridge

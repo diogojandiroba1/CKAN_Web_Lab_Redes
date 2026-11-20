@@ -22,7 +22,7 @@ A arquitetura organiza-se nas seguintes camadas:
 
 3. **Camada de Acesso e Serviços (*Access & Services*)**:
    * **Switches de Camada 2 (Cisco Catalyst 2960-24TT)**: Conectam os dispositivos finais com marcação de quadros 802.1Q;
-   * **Servidores Dedicados (DMZ / VLAN 20)**: Hospedam os nós de serviço `SRV-NEXTGIS` (aplicação web), `SRV-POSTGIS` (banco de dados espacial) e `SRV-DHCP` (concessão de endereçamento IP);
+   * **Servidores Dedicados (DMZ / VLAN 20)**: Hospedam os nós de serviço `SRV-CKAN` (catálogo e portal de dados abertos), `SRV-POSTGIS` (banco relacional e espacial) e `SRV-DHCP` (concessão de endereçamento IP);
    * **Estações de Trabalho de Usuários (VLAN 30)**: Estações de pesquisa técnica e estação autorizada de administração `WS-ADMIN`;
    * **Rede Sem Fio (VLAN 40)**: Pontos de acesso Wi-Fi 6 corporativos (`AP-CT12` e `AP-CT09`).
 
@@ -35,7 +35,7 @@ A infraestrutura utiliza blocos privados de endereçamento (RFC 1918) divididos 
 | VLAN / Enlace | Nome da Rede | Sub-rede (CIDR) | Gateway Padrão | Finalidade Operacional |
 | :---: | :--- | :--- | :--- | :--- |
 | **VLAN 10** | Gerência de Ativos | `192.168.10.0/24` | `192.168.10.1` | Gerenciamento exclusivo de switches e roteadores |
-| **VLAN 20** | Servidores e DMZ | `192.168.20.0/24` | `192.168.20.1` | Serviços NextGIS Web, banco PostGIS e DHCP |
+| **VLAN 20** | Servidores e DMZ | `192.168.20.0/24` | `192.168.20.1` | Serviços CKAN Portal, banco PostGIS e DHCP |
 | **VLAN 30** | Estações de Usuários | `192.168.30.0/24` | `192.168.30.1` | Computadores de pesquisa e estação administrativa |
 | **VLAN 40** | Rede Sem Fio (Wi-Fi) | `192.168.40.0/24` | `192.168.40.1` | Dispositivos móveis e notebooks via Access Points |
 | **Enlace WAN** | Trânsito Provedor UFS | `200.17.0.0/30` | `200.17.0.1` | Enlace WAN entre `ISP-UFS` e `router_border` |
@@ -46,7 +46,7 @@ A infraestrutura utiliza blocos privados de endereçamento (RFC 1918) divididos 
 ### Mapeamento Estático e Dinâmico de Endereços
 
 * **VLAN 10**: IPs estáticos para switches (`192.168.10.2` e `192.168.10.3`) e Access Points (`192.168.10.11` e `192.168.10.12`);
-* **VLAN 20**: IPs estáticos para `SRV-NEXTGIS` (`192.168.20.10`), `SRV-POSTGIS` (`192.168.20.20`) e `SRV-DHCP` (`192.168.20.30`);
+* **VLAN 20**: IPs estáticos para `SRV-CKAN` (`192.168.20.10`), `SRV-POSTGIS` (`192.168.20.20`) e `SRV-DHCP` (`192.168.20.30`);
 * **VLAN 30**: Atribuição dinâmica via `SRV-DHCP` na faixa de `192.168.30.50` a `192.168.30.200`, com exceção da estação de administração `WS-ADMIN` (`192.168.30.10` estático);
 * **VLAN 40**: Atribuição dinâmica via `SRV-DHCP` na faixa de `192.168.40.50` a `192.168.40.250`.
 
@@ -59,7 +59,7 @@ As políticas de segurança corporativa implementam o princípio do menor privil
 | Origem | Destino | Protocolo / Porta | Ação | Justificativa Técnica |
 | :--- | :--- | :---: | :---: | :--- |
 | **VLAN 30 / 40** | `any` | UDP 67, 68 (DHCP) | **PERMIT** | Permite negociação e renovação de concessões DHCP |
-| **VLAN 30 / 40** | `SRV-NEXTGIS` (`192.168.20.10`) | TCP 80, 443 | **PERMIT** | Acesso web à interface de mapas e catálogo OGC |
+| **VLAN 30 / 40** | `SRV-CKAN` (`192.168.20.10`) | TCP 80, 443 | **PERMIT** | Acesso web ao portal CKAN e à API REST de dados abertos |
 | **VLAN 30 / 40** | `SRV-POSTGIS` (`192.168.20.20`) | TCP 5432 | **DENY** | Bloqueia acesso direto ao PostgreSQL (proteção do banco) |
 | **VLAN 30 / 40** | VLAN 10 (Gerência) | Todos | **DENY** | Impede que estações acessem consoles de switches/roteadores |
 | `WS-ADMIN` (`192.168.30.10`) | VLAN 10 (Gerência) | TCP 22 (SSH) | **PERMIT** | Permite gestão técnica autorizada dos ativos |
@@ -91,23 +91,32 @@ interface GigabitEthernet0/0.30
 
 ## 4. Arquitetura do Serviço de Software Livre
 
-A plataforma geoespacial NextGIS Web estrutura-se sob o ecossistema de microsserviços em contêineres Docker:
+A plataforma institucional de dados abertos **CKAN 2.10** estrutura-se sob o ecossistema de microsserviços desacoplados em contêineres Docker:
 
 ```mermaid
 flowchart TD
-    Client["Navegador / Cliente GIS (QGIS, Web)"]
+    Client["Pesquisadores / Scripts Python / Navegador Web"]
     Nginx["Nginx (Proxy Reverso & Cache) - Portas 80/443"]
-    NextGIS["NextGIS Web Core (Serviço de Mapas & REST API)"]
-    Redis[("Redis 7.2 (Fila de Tarefas Assíncronas)")]
-    PostGIS[("PostgreSQL 16 + PostGIS 3.4 (Banco Espacial)")]
+    CKAN["CKAN Core 2.10 (Flask / Python REST API)"]
+    Solr[("Apache Solr 9 (Busca Textual & Filtros Facetados)")]
+    Redis[("Redis 7.2 (Cache de Sessão & Filas em Memória)")]
+    PostGIS[("PostgreSQL 15 + PostGIS (Metadados do Catálogo)")]
+    DataPusher["DataPusher (Pipeline Assíncrono Tabular)"]
+    DataStore[("PostgreSQL DataStore (Tabelas e Séries Históricas)")]
 
     Client -->|HTTP / HTTPS| Nginx
-    Nginx --> NextGIS
-    NextGIS --> Redis
-    NextGIS --> PostGIS
+    Nginx --> CKAN
+    CKAN --> Solr
+    CKAN --> Redis
+    CKAN --> PostGIS
+    CKAN --> DataPusher
+    DataPusher --> DataStore
+    CKAN --> DataStore
 ```
 
-1. **Proxy Reverso e Cache Web**: Nginx atuando como ponto único de entrada HTTP/HTTPS (portas 80 e 443), aplicando compactação gzip, cache de recursos estáticos e proteção de cabeçalhos;
-2. **Servidor de Mapas (*Core*)**: NextGIS Web processando chamadas da API REST e requisições OGC (WMS/WFS/TMS);
-3. **Fila de Tarefas Assíncronas**: Redis 7.2 gerenciando filas de importação de camadas cartográficas e geração de pirâmides de mosaicos;
-4. **Sistema Gerenciador de Banco de Dados**: PostgreSQL 16 com extensão espacial PostGIS 3.4, garantindo armazenamento transacional com suporte a tipos geométricos, operações topológicas e indexação R-Tree (GIST).
+1. **Proxy Reverso e Cache Web**: Nginx atuando como ponto único de entrada HTTP/HTTPS (portas 80 e 443), aplicando compactação gzip, cache de recursos estáticos e limite de *upload* para datasets de até 100 MB;
+2. **Núcleo da Aplicação (*Core*)**: CKAN 2.10 processando requisições web, governança de permissões RBAC e chamadas da API REST (`/api/3/action`);
+3. **Mecanismo de Busca Textual**: Apache Solr 9 provendo indexação textual distribuída e filtros facetados em milissegundos para descoberta de datasets;
+4. **Fila em Memória e Cache**: Redis 7.2 gerenciando sessões de usuários e concorrência;
+5. **Banco Relacional e Espacial**: PostgreSQL 15 com extensão PostGIS armazenando os metadados do catálogo e o repositório colunar do DataStore;
+6. **Pipeline de Carga Tabular**: DataPusher convertendo arquivos tabulares CSV/XLS em tabelas consultáveis via API SQL do DataStore.

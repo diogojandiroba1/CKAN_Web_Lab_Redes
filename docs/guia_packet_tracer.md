@@ -18,7 +18,7 @@ Para montar a topologia canônica no espaço de trabalho (*workspace*), selecion
 | **Roteador Interno** | *Network Devices* $\rightarrow$ *Routers* | **Cisco 2911** | `router_interno` |
 | **Switch Prédio CT-12** | *Network Devices* $\rightarrow$ *Switches* | **Cisco Catalyst 2960-24TT** | `SW-CT12` |
 | **Switch Prédio CT-09** | *Network Devices* $\rightarrow$ *Switches* | **Cisco Catalyst 2960-24TT** | `SW-CT09` |
-| **Servidor NextGIS Web** | *End Devices* $\rightarrow$ *End Devices* | **Server-PT** | `SRV-NEXTGIS` |
+| **Servidor CKAN Portal** | *End Devices* $\rightarrow$ *End Devices* | **Server-PT** | `SRV-CKAN` |
 | **Servidor PostGIS DB** | *End Devices* $\rightarrow$ *End Devices* | **Server-PT** | `SRV-POSTGIS` |
 | **Servidor DHCP Dedicado** | *End Devices* $\rightarrow$ *End Devices* | **Server-PT** | `SRV-DHCP` |
 | **Estação Gerência** | *End Devices* $\rightarrow$ *End Devices* | **PC-PT** | `WS-ADMIN` |
@@ -80,7 +80,7 @@ Disponha os elementos na tela organizados por blocos lógicos:
             | (VLAN 20)              | (VLAN 30)   | (VLAN 40)       | (Tronco 802.1Q)
             v                        v             v                 v (Backbone Óptico)
     [Servidores DMZ]            [Estações CT-12]  [AP CT-12]   [Para SW-CT09]
-    - NextGIS Web (.20.10)      - WS-CT12-01 (DHCP) (Wi-Fi)           |
+    - CKAN Portal (.20.10)      - WS-CT12-01 (DHCP) (Wi-Fi)           |
     - PostGIS DB (.20.20)       - WS-CT12-02 (DHCP)                   |
     - SRV-DHCP (.20.30)         - WS-ADMIN (.30.10)                   |
                                                                       v
@@ -111,7 +111,7 @@ Selecione a ferramenta de cabos (*Connections* $\rightarrow$ *Copper Straight-Th
 | `firewall_asa` | `GigabitEthernet1/2` | `router_interno` | `GigabitEthernet0/1` | Enlace P2P ASA Inside-Núcleo (10.0.1.0/30) |
 | `router_interno` | `GigabitEthernet0/0` | `SW-CT12` | `GigabitEthernet0/1` | Tronco 802.1Q (Router-on-a-Stick) |
 | `SW-CT12` | `GigabitEthernet0/2` | `SW-CT09` | `GigabitEthernet0/2` | Tronco 802.1Q (Backbone Campus) |
-| `SW-CT12` | `FastEthernet0/1` | `SRV-NEXTGIS` | `FastEthernet0` | DMZ Servidores - VLAN 20 |
+| `SW-CT12` | `FastEthernet0/1` | `SRV-CKAN` | `FastEthernet0` | DMZ Servidores - VLAN 20 |
 | `SW-CT12` | `FastEthernet0/2` | `SRV-POSTGIS` | `FastEthernet0` | DMZ Servidores - VLAN 20 |
 | `SW-CT12` | `FastEthernet0/3` | `SRV-DHCP` | `FastEthernet0` | Servidor DHCP Dedicado - VLAN 20 |
 | `SW-CT12` | `FastEthernet0/4` | `WS-ADMIN` | `FastEthernet0` | Estação Gerência - VLAN 30 |
@@ -468,7 +468,7 @@ write memory
    * Clique em **Save**.
 
 ### 5.2 Servidores Web e Banco de Dados
-1. **`SRV-NEXTGIS`**: IP `192.168.20.10`, Máscara `255.255.255.0`, Gateway `192.168.20.1`, DNS `8.8.8.8`. Services $\rightarrow$ HTTP: **On**;
+1. **`SRV-CKAN`**: IP `192.168.20.10`, Máscara `255.255.255.0`, Gateway `192.168.20.1`, DNS `8.8.8.8`. Services $\rightarrow$ HTTP: **On**;
 2. **`SRV-POSTGIS`**: IP `192.168.20.20`, Máscara `255.255.255.0`, Gateway `192.168.20.1`, DNS `8.8.8.8`.
 
 ### 5.3 Estações de Trabalho
@@ -493,7 +493,7 @@ Abra o **Command Prompt** na estação de trabalho **`WS-CT12-01`**:
    ```
    *Resultado*: Comunicação plena entre a VLAN 30 e a VLAN 20.
 
-3. **Teste da Aplicação Web NextGIS**:
+3. **Teste da Aplicação Web CKAN**:
    ```bash
    ping 192.168.20.10
    ```

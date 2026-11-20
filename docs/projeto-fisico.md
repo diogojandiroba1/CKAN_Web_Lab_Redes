@@ -132,7 +132,7 @@ O Rack Principal de 42U localizado na Sala 101 do CT-09 concentra todos os equip
 [U35] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
 [U34] [=================== SWITCH CORE / AGREGAÇÃO (SG3428 24P) ===========]
 [U33] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
-[U32] [================== PATCH PANEL 01 (DATACENTER NEXTGIS) =============]
+[U32] [================== PATCH PANEL 01 (DATACENTER CKAN) ================]
 [U31] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
 [U30] [================== SWITCH DE ACESSO 01 POE+ (SG2210P) ==============]
 [U29] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
@@ -151,7 +151,7 @@ O Rack Principal de 42U localizado na Sala 101 do CT-09 concentra todos os equip
 [U16] [====================== ESPAÇO VAGO / RESERVA ======================]
 [U15] [======== SERVIDOR DHCP DEDICADO DELL POWEREDGE R250 (1U) ===========]
 [U14] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
-[U13] [======== SERVIDOR WEB NEXTGIS DELL POWEREDGE R440 (1U) =============]
+[U13] [======== SERVIDOR WEB CKAN PORTAL DELL POWEREDGE R440 (1U) =======]
 [U12] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
 [U11] [  NAS / STORAGE BACKUP 4 BAIAS 16TB RAID 5 (QNAP)                   ] (2U)
 [U10] [____________________________________________________________________]
