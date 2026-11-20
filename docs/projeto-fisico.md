@@ -1,6 +1,6 @@
 # Projeto Físico da Rede e Cabeamento Estruturado
 
-Este documento descreve o projeto físico de infraestrutura, subsistemas de cabeamento estruturado, encaminhamento de eletrocalhas, plantas consideradas, simulação eletromagnética de cobertura Wi-Fi no software TP-Link Omada Designer e o layout de ocupação vertical em escala U do Rack Principal.
+Este documento descreve o projeto físico de infraestrutura, subsistemas de cabeamento estruturado, encaminhamento de condutos, plantas arquitetônicas consideradas, simulação de cobertura Wi-Fi no software TP-Link Omada Designer e o layout completo de ocupação vertical em escala U dos gabinetes (Racks padrão 19").
 
 ---
 
@@ -8,12 +8,12 @@ Este documento descreve o projeto físico de infraestrutura, subsistemas de cabe
 
 O dimensionamento físico baseia-se nas plantas baixas oficiais e cotadas dos prédios departamentais da Universidade Federal de Sergipe (UFS):
 
-### 1.1 Laboratório CT-09 (Sala 101 - Bancadas de Pesquisa e Rack Central)
+### 1.1 Laboratório CT-09 (Sala 101 - Bancadas de Pesquisa e Datacenter Local)
 * **Área Total**: $55{,}82\text{ m}^2$ (dimensões de $5{,}78\text{ m} \times 9{,}47\text{ m}$);
 * **Capacidade**: 45 postos de alunos/pesquisadores, mesa de coordenação e bancada de suporte;
-* **Infraestrutura**: Abriga o **Rack Principal de Telecomunicações de 42U** (canto inferior direito) e um ponto de acesso sem fio no teto (**AP-CT09**).
+* **Infraestrutura**: Abriga o **Rack Principal de Telecomunicações de 42U** (canto inferior direito junto à infraestrutura de energia estabilizada) e um ponto de acesso sem fio no teto (**AP-CT09**).
 
-![Planta Baixa Cotada - Laboratório CT-09](img/planta_CT09.png)
+![Planta Baixa Cotada - Laboratório CT-09](img/planta_CT09.png)  
 *Link para o arquivo anexado em alta resolução: [planta_CT09.png](img/planta_CT09.png)*
 
 ---
@@ -23,14 +23,14 @@ O dimensionamento físico baseia-se nas plantas baixas oficiais e cotadas dos pr
 * **Capacidade**: 47 postos de trabalho informatizados e mesa do docente;
 * **Infraestrutura**: Abriga o **Rack Secundário de Distribuição de 24U** (canto superior direito) e um ponto de acesso sem fio no teto (**AP-CT12**).
 
-![Planta Baixa Cotada - Laboratório CT-12](img/planta_CT12.png)
+![Planta Baixa Cotada - Laboratório CT-12](img/planta_CT12.png)  
 *Link para o arquivo anexado em alta resolução: [planta_CT12.png](img/planta_CT12.png)*
 
 ---
 
 ## 2. Subsistemas de Cabeamento Estruturado
 
-A instalação física abrange os prédios **CT-09** e **CT-12**, estruturando-se em cinco subsistemas:
+A instalação física abrange os prédios **CT-09** e **CT-12**, estruturando-se em cinco subsistemas normalizados (normas TIA-568 e NBR 14565):
 
 1. **Área de Trabalho (*Work Area*)**:
    * Tomadas modulares com conectores fêmea Keystone RJ-45 Categoria 6 (250 MHz) embutidos nas calhas do mobiliário técnico;
@@ -42,9 +42,10 @@ A instalação física abrange os prédios **CT-09** e **CT-12**, estruturando-s
    * Enlace permanente (*Permanent Link*) rigorosamente limitado a 90 metros, reservando a margem de 10 metros para manobras de patch cords, respeitando o canal total de 100 metros.
 
 3. **Infraestrutura de Encaminhamento de Cabos**:
-   * Desativação total das canaletas plásticas sobrepostas antigas;
-   * Instalação de eletrocalhas metálicas perfuradas suspensas e calhas técnicas embutidas no mobiliário dos laboratórios;
-   * Separação física mínima de 20 cm em relação aos circuitos elétricos de potência para prevenção de interferência eletromagnética (EMI).
+   * Desativação total das canaletas plásticas sobrepostas precárias existentes nos laboratórios;
+   * Encaminhamento aéreo principal através de **eletrocalhas perfuradas galvanizadas a fogo de $100 \times 50\text{ mm}$** com tampa sob pressão (barras de 3 metros, total de 45 metros lineares dimensionados com taxa de ocupação mecânica inferior a 40%, conforme ABNT NBR 14565 e NBR 5410);
+   * Distribuição sobre as bancadas dos pesquisadores através de **canaletas técnicas de alumínio de $73 \times 25\text{ mm}$ com septo divisor interno**, garantindo a segregação física obrigatória entre circuitos elétricos e cabeamento lógico de dados;
+   * Conjunto de curvas horizontais 90°, talas de emenda, tirantes roscados de fixação em laje e separação mínima de 20 cm em relação às prumadas de energia de potência, mitigando ruído e interferência eletromagnética (EMI). Todos os quantitativos e custos estão orçados nos itens 3.13 a 3.15 da planilha executiva [`NextGisWebFinal.xlsx`](../NextGisWebFinal.xlsx).
 
 4. **Backbone de Campus em Fibra Óptica**:
    * Interligação inter-predial subterrânea entre o Prédio CT-09 e o Prédio CT-12 através de cabo óptico monomodo (*Single-Mode Fiber* - SMF) 9/125 $\mu$m com 6 fibras e proteção mecânica contra umidade e roedores;
@@ -78,9 +79,9 @@ O trajeto dos condutos, localização dos gabinetes e distribuição dos pontos 
 
 ## 4. Simulação de Cobertura Eletromagnética e Mapa de Calor (TP-Link Omada)
 
-O dimensionamento de cobertura sem fio nos laboratórios foi executado no software **TP-Link Omada Designer**, posicionando 1 ponto de acesso centralizado modelo **TP-Link Omada EAP610 (Wi-Fi 6 AX1800)** em cada laboratório:
+O dimensionamento de cobertura sem fio nos laboratórios foi executado no software **TP-Link Omada Designer**, posicionando 1 ponto de acesso centralizado modelo **TP-Link Omada EAP610 (Wi-Fi 6 AX1800)** no teto de cada laboratório:
 
-![Mapa de Calor e Cobertura Wi-Fi Simulada no TP-Link Omada](img/omada_planta_heatmap.jpg)
+![Mapa de Calor e Cobertura Wi-Fi Simulada no TP-Link Omada](img/omada_planta_heatmap.jpg)  
 *Link para o arquivo anexado em alta resolução: [omada_planta_heatmap.jpg](img/omada_planta_heatmap.jpg)*
 
 * **Resultado da Propagação RF**: Cobertura integral (100% da área útil das mesas e postos de trabalho) com nível de sinal superior a $-60\text{ dBm}$, viabilizando tráfego de alta velocidade sem áreas de sombra;
@@ -92,7 +93,7 @@ O dimensionamento de cobertura sem fio nos laboratórios foi executado no softwa
 
 A lista de ativos e cabos gerada pela simulação do TP-Link Omada Designer é sintetizada na tabela abaixo:
 
-![Lista de Equipamentos Gerada no TP-Link Omada](img/omada_lista_equipamentos.png)
+![Lista de Equipamentos Gerada no TP-Link Omada](img/omada_lista_equipamentos.png)  
 *Link para o arquivo anexado em alta resolução: [omada_lista_equipamentos.png](img/omada_lista_equipamentos.png)*
 
 | Equipamento Omada | Descrição Técnica do Fabricante | Quantidade da Planta | Função na Infraestrutura |
@@ -104,19 +105,21 @@ A lista de ativos e cabos gerada pela simulação do TP-Link Omada Designer é s
 | **CAT.6** | Cabo U/UTP Cat6 23 AWG LSZH (Lançamento) | 24 m | Ramais horizontais primários calculados pelo simulador |
 | **SMF** | Cabo Óptico Monomodo (Single-Mode Fiber) | 31 m | Interligação óptica direta de backbone entre os racks |
 
-A planilha executiva completa com a adição dos servidores, passivos complementares e cotação de atas vigentes do PNCP encontra-se disponível na raiz do repositório em [`NextGisWebFinal.xlsx`](../NextGisWebFinal.xlsx).
+> **Nota Orçamentária**: A planilha orçamentária executiva (BOM) consolidada com cotações de atas vigentes do Portal Nacional de Contratações Públicas (PNCP, Lei nº 14.133/2021) é disponibilizada no arquivo executivo oficial [`NextGisWebFinal.xlsx`](../NextGisWebFinal.xlsx).
 
 ---
 
-## 6. Layout e Diagrama de Ocupação Vertical do Rack (42U)
+## 6. Layout e Diagrama de Ocupação dos Racks (EIA/ECA-310-E)
 
-O Rack Principal de 42U localizado na Sala 101 do CT-09 concentra todos os equipamentos ativos e servidores de processamento e dados:
+Esta seção consolida o detalhamento físico e a elevação vertical em escala U dos gabinetes padrão 19 polegadas dimensionados para os laboratórios nos prédios **CT-09 (Sala 101)** e **CT-12 (Sala 201)** da Universidade Federal de Sergipe.
 
-![Diagrama Visual de Ocupação do Rack 42U](img/layout_rack_telecomunicacoes.png)
-*Link para o arquivo anexado em alta resolução: [layout_rack_telecomunicacoes.png](img/layout_rack_telecomunicacoes.png)*
-*Consulte o documento dedicado com a análise detalhada e o diagrama do Mini-Rack 24U (CT-12): [diagrama-ocupacao-rack.md](diagrama-ocupacao-rack.md)*
+---
 
-### Diagrama de Elevação Vertical em Escala U (Markdown Textual)
+### 6.1 Rack Principal de Telecomunicações e Servidores (42U - CT-09 Sala 101)
+
+* **Gabinete**: Rack fechado de piso autossustentado $42\text{U} \times 800\text{mm} \times 1000\text{mm}$ com porta de vidro temperado fumê e fechadura com chave;
+* **Localização**: Laboratório CT-09 (Sala 101), posicionado no canto inferior direito junto à infraestrutura de energia estabilizada;
+* **Finalidade**: Concentrar os ativos de borda e segurança, roteamento inter-VLAN, switches de agregação, servidores corporativos do sistema CKAN, armazenamento em rede (NAS) e sistema de alimentação ininterrupta.
 
 ```text
 =============================================================================
@@ -171,4 +174,67 @@ O Rack Principal de 42U localizado na Sala 101 do CT-09 concentra todos os equip
 (Passam verticalmente da base ao topo nas laterais esquerda e direita)
 ```
 
-> **Nota sobre o Roteador Provedor (`ISP-UFS`)**: Conforme demarcado no projeto lógico, o roteador `ISP-UFS` situa-se no datacenter institucional do Núcleo de Tecnologia da Informação (NTI/UFS), não ocupando espaço físico no rack local do laboratório.
+![Representação Gráfica em Alta Resolução do Rack 42U](img/layout_rack_telecomunicacoes.png)  
+*Link para o anexo em alta resolução: [layout_rack_telecomunicacoes.png](img/layout_rack_telecomunicacoes.png)*
+
+> **Nota sobre o Roteador Provedor (`ISP-UFS`)**: O roteador de borda da operadora situa-se no datacenter central do Núcleo de Tecnologia da Informação (NTI/UFS), não ocupando espaço físico no rack local do laboratório.
+
+---
+
+### 6.2 Rack Secundário de Distribuição Local (24U - CT-12 Sala 201)
+
+* **Gabinete**: Mini-Rack padrão 19" $24\text{U} \times 600\text{mm} \times 670\text{mm}$ de piso/parede com porta de vidro e fechadura;
+* **Localização**: Laboratório CT-12 (Sala 201), posicionado no canto superior direito;
+* **Finalidade**: Realizar a terminação do enlace óptico inter-predial, comutação local dos postos de trabalho e alimentação PoE do Access Point EAP610.
+
+```text
+=============================================================================
+                      SISTEMA DE VENTILAÇÃO (TETO DO RACK)
+=============================================================================
+[U24] [======================= PAINEL DE VENTILAÇÃO =======================]
+[U23] [=================== CALHA DE TOMADAS (PDU) 8T ======================]
+[U22] [================== DIO (DISTRIBUIDOR INTERNO ÓPTICO 24F) ===========]
+[U21] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U20] [================= SWITCH DE ACESSO 01 (SG3428 24P GBE) =============]
+[U19] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U18] [================ PATCH PANEL 01 (ESTRUTURADO CT-12 BLOCO A) ========]
+[U17] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U16] [================= SWITCH DE ACESSO 02 (SG3428 24P GBE) =============]
+[U15] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U14] [================ PATCH PANEL 02 (ESTRUTURADO CT-12 BLOCO B) ========]
+[U13] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U12] [================== SWITCH DE ACESSO 03 POE+ (SG2210P) ==============]
+[U11] [----------------- GUIA DE CABO HORIZONTAL 1U -----------------------]
+[U10] [=================== BANDEJA FIXA DE APOIO (1U) =====================]
+[U09] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U08] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U07] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U06] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U05] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U04] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U03] [====================== ESPAÇO VAGO / RESERVA ======================]
+[U02] [  NO-BREAK (UPS) SENOIDAL INTERATIVO 1500VA RACKMOUNT (2U)           ] (2U)
+[U01] [____________________________________________________________________]
+=============================================================================
+                           BASE DO RACK / FIXAÇÃO
+=============================================================================
+::: ORGANIZADORES LATERAIS DE CABOS :::
+```
+
+---
+
+### 6.3 Critérios Técnicos de Engenharia e Boas Práticas
+
+1. **Distribuição Gravitacional de Cargas**:
+   * O sistema de nobreak e os módulos de baterias (elementos mais pesados do conjunto, totalizando mais de 60 kg) foram alocados na base inferior ([U01] a [U04]) para rebaixar o centro de gravidade e prevenir instabilidades estruturais do gabinete;
+   * Os servidores de processamento e armazenamento (Dell PowerEdge e QNAP) ocupam o terço médio inferior ([U08] a [U15]);
+   * Equipamentos ativos de rede leves e painéis de manobra ocupam a porção superior ([U24] a [U42]).
+
+2. **Termodinâmica e Fluxo de Ar (*Airflow*)**:
+   * Todos os equipamentos adotam o padrão de refrigeração frontal-traseira (*Front-to-Back Airflow*);
+   * Os espaços vagos foram mantidos para evitar acúmulo de ar quente residual entre as lâminas de processamento;
+   * O topo do gabinete é equipado com sistema de exaustão forçada com ventiladores acionados por termostato regulado para $24^\circ\text{C}$.
+
+3. **Gerenciamento e Manutenibilidade de Cabos**:
+   * Aplicação da regra 1:1 (um organizador horizontal de cabos 1U para cada elemento de manobra ou ativo comutador);
+   * Manobras estruturadas com cordões de tamanho padronizado (0,5 m e 1,5 m), eliminando laços suspensos e obstrução visual das portas de diagnóstico.

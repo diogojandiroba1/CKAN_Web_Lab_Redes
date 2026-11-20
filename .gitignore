@@ -1,5 +1,5 @@
 # ==============================================================================
-# .gitignore - Projeto de Redes UFS 2026.2 (NextGIS Web Lab Redes)
+# .gitignore - Projeto de Redes UFS 2026.2 (CKAN Web Lab Redes)
 # ==============================================================================
 
 # Segredos, Chaves Privadas e Credenciais
@@ -30,6 +30,16 @@ Como documentar a infraestrutura de rede da empresa — oHub Base TI.pdf
 # Plantas e Capturas Brutas na Raiz (Já consolidadas e versionadas em docs/img/)
 CT09.PNG
 CT12.PNG
+
+# Documentos Internos de Controle, Guias e Avaliação
+docs/STATE.md
+STATE.md
+docs/bom-orcamento.md
+*bom*.md
+docs/guia_packet_tracer.md
+guia_packet_tracer.md
+docs/mecanismos-avaliacao.md
+docs/diagrama-ocupacao-rack.md
 
 # Decisões Arquiteturais e Scripts Internos (Não exigidos no edital)
 docs/adr/
